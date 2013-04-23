@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>712</width>
+    <height>529</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>712</width>
+    <height>529</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>712</width>
+    <height>529</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>6</y>
+      <width>541</width>
+      <height>461</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>3</number>
+    </property>
+    <widget class="QWidget" name="tab_1">
+     <attribute name="title">
+      <string>Noise and Color</string>
+     </attribute>
+     <widget class="QLabel" name="Image1_1">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>37</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="Resources/list.qrc">:/new/prefix1/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image1_2">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="Resources/list.qrc">:/new/prefix1/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image1_3">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="Resources/list.qrc">:/new/prefix1/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>20</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Current View</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox1">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>37</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pick an option...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Add Salt &amp; Pepper Noise</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Add Gaussian Noise</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Change Colorspace</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Grayscale</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Histogram Equalization</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Add Logo</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBoxColorspace">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>70</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>RGB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HSV</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HLS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>YCbCr</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CIE XYZ</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CIE Lab</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Luv</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QSlider" name="noisePowerSlider">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>120</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>18</x>
+        <y>106</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Noise power</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonOriginalView1">
+      <property name="geometry">
+       <rect>
+        <x>242</x>
+        <y>400</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Original View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonProccessedView1">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>400</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Proccessed View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QSlider" name="noiseStdDev">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>157</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>144</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Noise Standard Deviation</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxPV_1">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>300</y>
+        <width>121</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Proccessed View</string>
+      </property>
+      <widget class="QRadioButton" name="radioButtonIm">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>71</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Image</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonHis">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>91</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Histogram</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QCommandLinkButton" name="resetButton1">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>250</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RESET ACTIONS</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Resources/list.qrc">
+        <normaloff>:/new/prefix1/refresh.png</normaloff>:/new/prefix1/refresh.png</iconset>
+      </property>
+     </widget>
+     <widget class="QSlider" name="xPositionBar">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>193</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="value">
+       <number>95</number>
+      </property>
+      <property name="sliderPosition">
+       <number>95</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Logo: X Position</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>217</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Logo: Y Position</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="yPositionBar">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>230</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="value">
+       <number>95</number>
+      </property>
+      <property name="sliderPosition">
+       <number>95</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Space Domain</string>
+     </attribute>
+     <widget class="QLabel" name="Image2_3">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image2_2">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image2_1">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>37</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>20</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Current View</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonOriginalView2">
+      <property name="geometry">
+       <rect>
+        <x>242</x>
+        <y>400</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Original View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonProccessedView2">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>400</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Proccessed View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox2">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>37</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pick an option...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Morphological Operations</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Blur</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sharp</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sobel Operator</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Laplacian Operator</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Edge Detection (CANNY)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Extract Lines (Hough)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Extract Circles (Hough)</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBoxMorpho">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>70</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Morph Type</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Dilate</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Erode</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Open</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>18</x>
+        <y>139</y>
+        <width>181</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Filter strength</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="filterStrengthSlider">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>153</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="houghSlider">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>189</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>176</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Hough threshold</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxPV_2">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>300</y>
+        <width>121</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Proccessed View</string>
+      </property>
+      <widget class="QRadioButton" name="radioButtonIm2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>71</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Image</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonHis2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>91</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Histogram</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>18</x>
+        <y>106</y>
+        <width>181</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sctructurant Element Size</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="morphSlider">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>120</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="resetButton2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>250</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RESET ACTIONS</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Resources/list.qrc">
+        <normaloff>:/new/prefix1/refresh.png</normaloff>:/new/prefix1/refresh.png</iconset>
+      </property>
+     </widget>
+     <widget class="QSlider" name="cannySlider1">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>224</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="cannySlider2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>224</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>210</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Canny threshold 1 and 2</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Features</string>
+     </attribute>
+     <widget class="QLabel" name="Image3_3">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image3_2">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image3_1">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>37</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>20</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Current View</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonOriginalView3">
+      <property name="geometry">
+       <rect>
+        <x>242</x>
+        <y>400</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Original View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonProccessedView3">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>400</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Proccessed View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox3">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>37</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pick an option...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Connected Objects</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Contours</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Bounding Box</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Minimum Enclosing Circle</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Centroids</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Feature...</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QSlider" name="featureSlider">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>153</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>139</y>
+        <width>181</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Feature Parameter</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBoxFeatures">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>70</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Feature Type</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MSER</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HARRIS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>HARRIS NMS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>STAR</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FAST</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SIFT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SURF</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QCommandLinkButton" name="resetButton3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>250</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RESET ACTIONS</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Resources/list.qrc">
+        <normaloff>:/new/prefix1/refresh.png</normaloff>:/new/prefix1/refresh.png</iconset>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxPV_3">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>300</y>
+        <width>121</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Proccessed View</string>
+      </property>
+      <widget class="QRadioButton" name="radioButtonIm3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>71</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Image</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonHis3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>91</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Histogram</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QSlider" name="threshSlider">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>120</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>18</x>
+        <y>106</y>
+        <width>181</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Thresholding Parameter</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Stereo</string>
+     </attribute>
+     <widget class="QLabel" name="Image4_3">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image4_2">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>280</y>
+        <width>160</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Image4_1">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>37</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../../Pictures/hendrix.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="viewButton1">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>40</y>
+        <width>90</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>VIEW 1</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Resources/list.qrc">
+        <normaloff>:/new/prefix1/photo.png</normaloff>:/new/prefix1/photo.png</iconset>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="viewButton2">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>40</y>
+        <width>90</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>VIEW 2</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Resources/list.qrc">
+        <normaloff>:/new/prefix1/photo.png</normaloff>:/new/prefix1/photo.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="calibrateButton">
+      <property name="geometry">
+       <rect>
+        <x>12</x>
+        <y>160</y>
+        <width>191</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CALIBRATE CAM</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox4">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>120</y>
+        <width>191</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pick an option...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Match feature points</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Draw epipolar lines</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Find homography</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Mosaic </string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="fundamentalComboBox">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>90</y>
+        <width>191</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>FUNDAMENTAL MATRIX...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>7 point method</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>8 point method</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RANSAC</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="buttonVisualizeView1">
+      <property name="geometry">
+       <rect>
+        <x>242</x>
+        <y>400</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>View 1</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonVisualizeView2">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>400</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>View 2</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonVisualizeView0">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>10</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Current View</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>131</width>
+      <height>451</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Input Config</string>
+    </property>
+    <widget class="QPushButton" name="buttonCam1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>19</y>
+       <width>111</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start CAM</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cameraLabel">
+     <property name="geometry">
+      <rect>
+       <x>2</x>
+       <y>49</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>No camera enabled</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="openImageButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>111</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Open File...</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="frameLabel">
+     <property name="geometry">
+      <rect>
+       <x>3</x>
+       <y>99</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>No File selected</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>346</y>
+       <width>131</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="Resources/list.qrc">:/new/prefix1/UB.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>330</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="Line" name="line_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>434</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="actionsText">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>143</y>
+       <width>131</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>712</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>712</width>
+     <height>15</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>712</width>
+     <height>15</height>
+    </size>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="Resources/list.qrc"/>
+ </resources>
+ <connections/>
+</ui>
