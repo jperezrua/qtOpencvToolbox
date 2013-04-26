@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->timerVideo = new QTimer();
     this->currentView = 1;
     this->stereoView = 0;
+    this->matrixview = 0;
     this->camState = false;
     this->frameState = false;
 
@@ -240,6 +241,74 @@ void MainWindow::update_image_label(){
             ui->Image4_1->setPixmap(QPixmap::fromImage(*viewImage2));
             ui->Image4_1->show();
         }
+
+        extern double FM[3][3];
+        char text[100]; //You always need C :)
+
+        switch (this->matrixview){
+        case 0:{
+            sprintf(text, "%.4g", FM[0][0]);
+            ui->matrix00->setText(QString(text));
+            sprintf(text, "%.4g", FM[0][1]);
+            ui->matrix01->setText(QString(text));
+            sprintf(text, "%.4g", FM[0][2]);
+            ui->matrix02->setText(QString(text));
+            sprintf(text, "%.4g", FM[1][0]);
+            ui->matrix10->setText(QString(text));
+            sprintf(text, "%.4g", FM[1][1]);
+            ui->matrix11->setText(QString(text));
+            sprintf(text, "%.4g", FM[1][2]);
+            ui->matrix12->setText(QString(text));
+            sprintf(text, "%.4g", FM[2][0]);
+            ui->matrix20->setText(QString(text));
+            sprintf(text, "%.4g", FM[2][1]);
+            ui->matrix21->setText(QString(text));
+            sprintf(text, "%.4g", FM[2][2]);
+            ui->matrix22->setText(QString(text));
+            }break;
+        case 1:{
+            extern double HG[3][3];
+            sprintf(text, "%.4g", HG[0][0]);
+            ui->matrix00->setText(QString(text));
+            sprintf(text, "%.4g", HG[0][1]);
+            ui->matrix01->setText(QString(text));
+            sprintf(text, "%.4g", HG[0][2]);
+            ui->matrix02->setText(QString(text));
+            sprintf(text, "%.4g", HG[1][0]);
+            ui->matrix10->setText(QString(text));
+            sprintf(text, "%.4g", HG[1][1]);
+            ui->matrix11->setText(QString(text));
+            sprintf(text, "%.4g", HG[1][2]);
+            ui->matrix12->setText(QString(text));
+            sprintf(text, "%.4g", HG[2][0]);
+            ui->matrix20->setText(QString(text));
+            sprintf(text, "%.4g", HG[2][1]);
+            ui->matrix21->setText(QString(text));
+            sprintf(text, "%.4g", HG[2][2]);
+            ui->matrix22->setText(QString(text));
+            }break;
+        case 2:{
+            extern double EC[3][3];
+            sprintf(text, "%.4g", EC[0][0]);
+            ui->matrix00->setText(QString(text));
+            sprintf(text, "%.4g", EC[0][1]);
+            ui->matrix01->setText(QString(text));
+            sprintf(text, "%.4g", EC[0][2]);
+            ui->matrix02->setText(QString(text));
+            sprintf(text, "%.4g", EC[1][0]);
+            ui->matrix10->setText(QString(text));
+            sprintf(text, "%.4g", EC[1][1]);
+            ui->matrix11->setText(QString(text));
+            sprintf(text, "%.4g", EC[1][2]);
+            ui->matrix12->setText(QString(text));
+            sprintf(text, "%.4g", EC[2][0]);
+            ui->matrix20->setText(QString(text));
+            sprintf(text, "%.4g", EC[2][1]);
+            ui->matrix21->setText(QString(text));
+            sprintf(text, "%.4g", EC[2][2]);
+            ui->matrix22->setText(QString(text));
+            }break;
+        }
     }
 }
 
@@ -319,19 +388,20 @@ void MainWindow::on_buttonProccessedView2_clicked(){
     this->currentView = 1;
 }
 
-void MainWindow::on_buttonOriginalView3_clicked(bool checked){
+void MainWindow::on_buttonOriginalView3_clicked(){
     this->currentView = 0;
 }
 
-void MainWindow::on_buttonProccessedView3_clicked(bool checked){
+void MainWindow::on_buttonProccessedView3_clicked(){
     this->currentView = 1;
 }
 
-void MainWindow::on_buttonVisualizeView1_clicked(bool checked){
+
+void MainWindow::on_buttonVisualizeView1_clicked(){
     this->stereoView = 1;
 }
 
-void MainWindow::on_buttonVisualizeView2_clicked(bool checked){
+void MainWindow::on_buttonVisualizeView2_clicked(){
     this->stereoView = 2;
 }
 
@@ -540,6 +610,52 @@ void MainWindow::on_comboBoxFeatures_currentIndexChanged(int index){
     }
 }
 
+void MainWindow::on_fundamentalComboBox_currentIndexChanged(int index){
+    ui->featureSlider2->setEnabled(true);
+    switch (index){
+        case 1: // 7 POINT
+            ui->actionsText->appendPlainText("* FUND: 7POINT");
+            computerVision->computeFundamentalMatrix("7POINT");
+            break;
+        case 2: // 8 POINT
+            ui->actionsText->appendPlainText("* FUND: 8POINT");
+            computerVision->computeFundamentalMatrix("8POINT");
+            break;
+        case 3: // RANSAC
+            ui->actionsText->appendPlainText("* FUND: RANSAC");
+            computerVision->computeFundamentalMatrix("RANSAC");
+            break;
+        default:
+            computerVision->computeFundamentalMatrix("NONE");
+    }
+}
+
+void MainWindow::on_comboBox4_currentIndexChanged(int index){
+    ui->featureSlider2->setEnabled(true);
+    computerVision->computeFundamentalMatrix("NONE");
+
+    switch (index){
+        case 1: // EPIPOLAR
+            ui->actionsText->appendPlainText("* EPIPOLAR");
+            computerVision->applyStereoFun("EPIPOLAR");
+            break;
+        case 2: // HOMOGRAPHY
+            ui->actionsText->appendPlainText("* HOMOGRAPHY");
+            computerVision->applyStereoFun("HOMOGRAPHY");
+            break;
+        case 3: // MOSAIC
+            ui->actionsText->appendPlainText("* MOSAIC");
+            computerVision->applyStereoFun("MOSAIC");
+            break;
+        case 4: //MATCHES
+            ui->actionsText->appendPlainText("* MATCHES");
+            computerVision->applyStereoFun("MATCHES");
+            break;
+        default:
+            computerVision->computeFundamentalMatrix("NONE");
+    }
+}
+
 void MainWindow::setTab1ToDefault(){
     ui->noisePowerSlider->setValue(50);
     ui->noiseStdDev->setValue(50);
@@ -600,11 +716,13 @@ void MainWindow::setTab3ToDefault(){
 }
 
 void MainWindow::setTab4ToDefault(){
-    ui->buttonVisualizeView0->setEnabled(false);
-    ui->buttonVisualizeView1->setEnabled(false);
-    ui->buttonVisualizeView2->setEnabled(false);
-    ui->fundamentalComboBox->setEnabled(false);
-    ui->comboBox4->setEnabled(false);
+    ui->fundamentalComboBox->setCurrentIndex(0);
+    ui->comboBox4->setCurrentIndex(0);
+    ui->featureSlider2->setEnabled(false);
+
+    computerVision->computeFundamentalMatrix("NONE");
+    computerVision->applyStereoFun("NONE");
+    computerVision->calibrateCam(false);
 }
 
 void MainWindow::setAllToDefault(){
@@ -641,6 +759,11 @@ void MainWindow::on_resetButton3_clicked(){
     ui->actionsText->setPlainText("Feature reset.");
 }
 
+void MainWindow::on_resetButton4_clicked(){
+    setTab4ToDefault();
+    ui->actionsText->setPlainText("Stereo reset.");
+}
+
 void MainWindow::on_filterStrengthSlider_valueChanged(int value){
     computerVision->setFilterParam(value);
 }
@@ -665,8 +788,13 @@ void MainWindow::on_featureSlider_valueChanged(int value){
     computerVision->setFeatureParam(value);
 }
 
+void MainWindow::on_featureSlider2_valueChanged(int value){
+    computerVision->setFeatureParam(value);
+}
+
 void MainWindow::on_viewButton1_clicked(){
     extern QImage qImage1;
+    computerVision->selectView1();
     this->viewImage1 = new QImage(qImage1);
     ui->Image4_2->setPixmap(QPixmap::fromImage(*viewImage1));
     ui->Image4_2->show();
@@ -682,6 +810,7 @@ void MainWindow::on_viewButton1_clicked(){
 
 void MainWindow::on_viewButton2_clicked(){
     extern QImage qImage1;
+    computerVision->selectView2();
     this->viewImage2 = new QImage(qImage1);
     ui->Image4_3->setPixmap(QPixmap::fromImage(*viewImage2));
     ui->Image4_3->show();
@@ -696,4 +825,49 @@ void MainWindow::on_viewButton2_clicked(){
 }
 
 
+void MainWindow::on_radioButtonLeft_toggled(bool checked){
+    if (checked)
+        computerVision->setIm2Show(1);
+    else
+        computerVision->setIm2Show(2);
+}
 
+void MainWindow::on_calibrateButton_clicked(bool checked){
+    ui->actionsText->appendPlainText("* Calibrating camera.");
+    computerVision->calibrateCam(checked);
+}
+
+
+void MainWindow::on_radioButtonF_clicked(){
+    if (ui->radioButtonE->isChecked()){
+        this->matrixview=2;
+    }
+    if (ui->radioButtonH->isChecked()){
+        this->matrixview=1;
+    }
+    if (ui->radioButtonF->isChecked()){
+        this->matrixview=0;
+    }
+}
+void MainWindow::on_radioButtonH_clicked(){
+    if (ui->radioButtonE->isChecked()){
+        this->matrixview=2;
+    }
+    if (ui->radioButtonH->isChecked()){
+        this->matrixview=1;
+    }
+    if (ui->radioButtonF->isChecked()){
+        this->matrixview=0;
+    }
+}
+void MainWindow::on_radioButtonE_clicked(){
+    if (ui->radioButtonE->isChecked()){
+        this->matrixview=2;
+    }
+    if (ui->radioButtonH->isChecked()){
+        this->matrixview=1;
+    }
+    if (ui->radioButtonF->isChecked()){
+        this->matrixview=0;
+    }
+}

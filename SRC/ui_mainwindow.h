@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Apr 23 00:39:52 2013
+** Created: Sat Apr 27 00:17:03 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,6 +20,7 @@
 #include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPlainTextEdit>
@@ -110,6 +111,26 @@ public:
     QPushButton *buttonVisualizeView1;
     QPushButton *buttonVisualizeView2;
     QPushButton *buttonVisualizeView0;
+    QGroupBox *groupBox_2;
+    QLineEdit *matrix00;
+    QLineEdit *matrix01;
+    QLineEdit *matrix10;
+    QLineEdit *matrix11;
+    QLineEdit *matrix21;
+    QLineEdit *matrix20;
+    QLineEdit *matrix22;
+    QFrame *frame;
+    QLineEdit *matrix02;
+    QLineEdit *matrix12;
+    QRadioButton *radioButtonF;
+    QRadioButton *radioButtonH;
+    QRadioButton *radioButtonE;
+    QSlider *featureSlider2;
+    QLabel *label_24;
+    QCommandLinkButton *resetButton4;
+    QGroupBox *groupBoxPV5;
+    QRadioButton *radioButtonLeft;
+    QRadioButton *radioButtonRight;
     QGroupBox *groupBox;
     QPushButton *buttonCam1;
     QLabel *cameraLabel;
@@ -415,23 +436,24 @@ public:
         Image4_1->setScaledContents(true);
         viewButton1 = new QCommandLinkButton(tab_4);
         viewButton1->setObjectName(QString::fromUtf8("viewButton1"));
-        viewButton1->setGeometry(QRect(11, 40, 90, 40));
+        viewButton1->setGeometry(QRect(11, 0, 90, 40));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/new/prefix1/photo.png"), QSize(), QIcon::Normal, QIcon::Off);
         viewButton1->setIcon(icon1);
         viewButton2 = new QCommandLinkButton(tab_4);
         viewButton2->setObjectName(QString::fromUtf8("viewButton2"));
-        viewButton2->setGeometry(QRect(111, 40, 90, 40));
+        viewButton2->setGeometry(QRect(111, 0, 90, 40));
         viewButton2->setIcon(icon1);
         calibrateButton = new QPushButton(tab_4);
         calibrateButton->setObjectName(QString::fromUtf8("calibrateButton"));
-        calibrateButton->setGeometry(QRect(12, 160, 191, 27));
+        calibrateButton->setGeometry(QRect(10, 166, 191, 27));
+        calibrateButton->setCheckable(true);
         comboBox4 = new QComboBox(tab_4);
         comboBox4->setObjectName(QString::fromUtf8("comboBox4"));
-        comboBox4->setGeometry(QRect(11, 120, 191, 24));
+        comboBox4->setGeometry(QRect(11, 98, 191, 24));
         fundamentalComboBox = new QComboBox(tab_4);
         fundamentalComboBox->setObjectName(QString::fromUtf8("fundamentalComboBox"));
-        fundamentalComboBox->setGeometry(QRect(11, 90, 191, 24));
+        fundamentalComboBox->setGeometry(QRect(11, 40, 191, 24));
         buttonVisualizeView1 = new QPushButton(tab_4);
         buttonVisualizeView1->setObjectName(QString::fromUtf8("buttonVisualizeView1"));
         buttonVisualizeView1->setGeometry(QRect(242, 400, 91, 20));
@@ -444,6 +466,114 @@ public:
         buttonVisualizeView0->setObjectName(QString::fromUtf8("buttonVisualizeView0"));
         buttonVisualizeView0->setGeometry(QRect(332, 10, 91, 20));
         buttonVisualizeView0->setFlat(true);
+        groupBox_2 = new QGroupBox(tab_4);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        groupBox_2->setGeometry(QRect(10, 220, 191, 161));
+        groupBox_2->setLayoutDirection(Qt::LeftToRight);
+        groupBox_2->setFlat(false);
+        matrix00 = new QLineEdit(groupBox_2);
+        matrix00->setObjectName(QString::fromUtf8("matrix00"));
+        matrix00->setGeometry(QRect(2, 85, 61, 16));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Sans Serif"));
+        font.setPointSize(7);
+        matrix00->setFont(font);
+        matrix00->setReadOnly(true);
+        matrix01 = new QLineEdit(groupBox_2);
+        matrix01->setObjectName(QString::fromUtf8("matrix01"));
+        matrix01->setGeometry(QRect(64, 85, 61, 16));
+        matrix01->setFont(font);
+        matrix01->setReadOnly(true);
+        matrix10 = new QLineEdit(groupBox_2);
+        matrix10->setObjectName(QString::fromUtf8("matrix10"));
+        matrix10->setGeometry(QRect(2, 102, 61, 16));
+        matrix10->setFont(font);
+        matrix10->setReadOnly(true);
+        matrix11 = new QLineEdit(groupBox_2);
+        matrix11->setObjectName(QString::fromUtf8("matrix11"));
+        matrix11->setGeometry(QRect(64, 102, 61, 16));
+        matrix11->setFont(font);
+        matrix11->setReadOnly(true);
+        matrix21 = new QLineEdit(groupBox_2);
+        matrix21->setObjectName(QString::fromUtf8("matrix21"));
+        matrix21->setGeometry(QRect(64, 119, 61, 16));
+        matrix21->setFont(font);
+        matrix21->setReadOnly(true);
+        matrix20 = new QLineEdit(groupBox_2);
+        matrix20->setObjectName(QString::fromUtf8("matrix20"));
+        matrix20->setGeometry(QRect(2, 119, 61, 16));
+        matrix20->setFont(font);
+        matrix20->setReadOnly(true);
+        matrix22 = new QLineEdit(groupBox_2);
+        matrix22->setObjectName(QString::fromUtf8("matrix22"));
+        matrix22->setGeometry(QRect(126, 119, 61, 16));
+        matrix22->setFont(font);
+        matrix22->setReadOnly(true);
+        frame = new QFrame(groupBox_2);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setGeometry(QRect(-7, 80, 201, 61));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        matrix02 = new QLineEdit(frame);
+        matrix02->setObjectName(QString::fromUtf8("matrix02"));
+        matrix02->setGeometry(QRect(133, 5, 61, 16));
+        matrix02->setFont(font);
+        matrix02->setReadOnly(true);
+        matrix12 = new QLineEdit(frame);
+        matrix12->setObjectName(QString::fromUtf8("matrix12"));
+        matrix12->setGeometry(QRect(133, 22, 61, 16));
+        matrix12->setFont(font);
+        matrix12->setReadOnly(true);
+        radioButtonF = new QRadioButton(groupBox_2);
+        radioButtonF->setObjectName(QString::fromUtf8("radioButtonF"));
+        radioButtonF->setGeometry(QRect(10, 20, 121, 19));
+        radioButtonF->setChecked(true);
+        radioButtonH = new QRadioButton(groupBox_2);
+        radioButtonH->setObjectName(QString::fromUtf8("radioButtonH"));
+        radioButtonH->setGeometry(QRect(10, 37, 121, 19));
+        radioButtonH->setChecked(false);
+        radioButtonE = new QRadioButton(groupBox_2);
+        radioButtonE->setObjectName(QString::fromUtf8("radioButtonE"));
+        radioButtonE->setGeometry(QRect(10, 55, 121, 19));
+        radioButtonE->setChecked(false);
+        frame->raise();
+        matrix00->raise();
+        matrix01->raise();
+        matrix10->raise();
+        matrix11->raise();
+        matrix21->raise();
+        matrix20->raise();
+        matrix22->raise();
+        radioButtonF->raise();
+        matrix02->raise();
+        radioButtonH->raise();
+        radioButtonE->raise();
+        featureSlider2 = new QSlider(tab_4);
+        featureSlider2->setObjectName(QString::fromUtf8("featureSlider2"));
+        featureSlider2->setEnabled(false);
+        featureSlider2->setGeometry(QRect(14, 77, 181, 19));
+        featureSlider2->setSliderPosition(50);
+        featureSlider2->setOrientation(Qt::Horizontal);
+        label_24 = new QLabel(tab_4);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+        label_24->setGeometry(QRect(15, 63, 181, 16));
+        resetButton4 = new QCommandLinkButton(tab_4);
+        resetButton4->setObjectName(QString::fromUtf8("resetButton4"));
+        resetButton4->setGeometry(QRect(40, 380, 121, 41));
+        QFont font1;
+        font1.setKerning(true);
+        resetButton4->setFont(font1);
+        resetButton4->setIcon(icon);
+        groupBoxPV5 = new QGroupBox(tab_4);
+        groupBoxPV5->setObjectName(QString::fromUtf8("groupBoxPV5"));
+        groupBoxPV5->setGeometry(QRect(20, 124, 171, 41));
+        radioButtonLeft = new QRadioButton(groupBoxPV5);
+        radioButtonLeft->setObjectName(QString::fromUtf8("radioButtonLeft"));
+        radioButtonLeft->setGeometry(QRect(10, 20, 71, 19));
+        radioButtonLeft->setChecked(true);
+        radioButtonRight = new QRadioButton(groupBoxPV5);
+        radioButtonRight->setObjectName(QString::fromUtf8("radioButtonRight"));
+        radioButtonRight->setGeometry(QRect(90, 20, 71, 19));
         tabWidget->addTab(tab_4, QString());
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
@@ -629,10 +759,10 @@ public:
         comboBox4->clear();
         comboBox4->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "Pick an option...", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Match feature points", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "Draw epipolar lines", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "Find homography", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "Mosaic ", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Matches", 0, QApplication::UnicodeUTF8)
         );
         fundamentalComboBox->clear();
         fundamentalComboBox->insertItems(0, QStringList()
@@ -644,6 +774,15 @@ public:
         buttonVisualizeView1->setText(QApplication::translate("MainWindow", "View 1", 0, QApplication::UnicodeUTF8));
         buttonVisualizeView2->setText(QApplication::translate("MainWindow", "View 2", 0, QApplication::UnicodeUTF8));
         buttonVisualizeView0->setText(QApplication::translate("MainWindow", "Current View", 0, QApplication::UnicodeUTF8));
+        groupBox_2->setTitle(QApplication::translate("MainWindow", "MATRIX VIEW", 0, QApplication::UnicodeUTF8));
+        radioButtonF->setText(QApplication::translate("MainWindow", "Fundamental", 0, QApplication::UnicodeUTF8));
+        radioButtonH->setText(QApplication::translate("MainWindow", "Homography", 0, QApplication::UnicodeUTF8));
+        radioButtonE->setText(QApplication::translate("MainWindow", "Calibration", 0, QApplication::UnicodeUTF8));
+        label_24->setText(QApplication::translate("MainWindow", "Feature Parameter", 0, QApplication::UnicodeUTF8));
+        resetButton4->setText(QApplication::translate("MainWindow", "RESET ACTIONS", 0, QApplication::UnicodeUTF8));
+        groupBoxPV5->setTitle(QApplication::translate("MainWindow", "Proccessed View", 0, QApplication::UnicodeUTF8));
+        radioButtonLeft->setText(QApplication::translate("MainWindow", "Left", 0, QApplication::UnicodeUTF8));
+        radioButtonRight->setText(QApplication::translate("MainWindow", "Right", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Stereo", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MainWindow", "Input Config", 0, QApplication::UnicodeUTF8));
         buttonCam1->setText(QApplication::translate("MainWindow", "Start CAM", 0, QApplication::UnicodeUTF8));

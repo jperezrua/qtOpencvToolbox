@@ -6,6 +6,7 @@
 #include <QString>
 #include <string>
 #include "opencv2/opencv.hpp"
+#include "cameracalibrator.h"
 
 #define _ON_CAM    1
 #define _ON_FRAME  2
@@ -58,6 +59,12 @@ public:
     void findShapeDescriptor(QString type);
     void findFeature(QString type);
     void setFeatureParam(double v);
+    void computeFundamentalMatrix(QString);
+    void selectView1(bool v=true);
+    void selectView2(bool v=true);
+    void applyStereoFun(QString type);
+    void calibrateCam(bool f);
+    void setIm2Show(int i);
 
 signals:
     void finished();
@@ -89,11 +96,23 @@ private:
     double xlogo;
     double ylogo;
     bool endVideo;
+    QString fundamentalMethod;
     QString filter;
     QString morpho;
     QString hough;
     QString shape;
     QString feature;
+    QString stereo;
+    cv::Mat mview1;
+    cv::Mat mview2;
+    int showmview;
+    std::vector<cv::KeyPoint> keypoints1, keypoints2;
+    std::vector<cv::DMatch> matches;
+    cv::Mat F;
+    cv::Mat H;
+    cv::Mat E;
+    bool bmview1;
+    bool bmview2;
     double featureParam;
     int morphoSize;
     double filterParam;
@@ -104,6 +123,11 @@ private:
     bool conObjs;
     bool contours;
     double threshold;
+    bool calibrate; //make calibration
+    bool calibrated;//calibration state
+    int numImagesCalibration;
+    int calibImageIndex;
+    CameraCalibrator calibrator;
     std::string logoFilename;
     std::string frameFilename;
     std::string videoFilename;

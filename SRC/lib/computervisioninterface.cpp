@@ -4,12 +4,19 @@
 
 #include "opencv2/features2d/features2d.hpp"
 #include "opencv2/nonfree/features2d.hpp"
+#include "opencv2/calib3d/calib3d.hpp"
+
+#include "robustmatcher.h"
+
 
 /* Interface Global Variables */
 
 QImage qImage1;
 QImage qImage1Histogram;
 QImage qProccessedImage;
+double FM[3][3]={{0,0,0},{0,0,0},{0,0,1}};
+double HG[3][3]={{0,0,0},{0,0,0},{0,0,1}};
+double EC[3][3]={{0,0,0},{0,0,0},{0,0,1}};
 
 ComputerVisionInterface::ComputerVisionInterface(){
     this->addSaltPepperNoise=false;
@@ -37,6 +44,8 @@ ComputerVisionInterface::ComputerVisionInterface(){
     this->hough="NONE";
     this->shape="NONE";
     this->feature="NONE";
+    this->stereo = "NONE";
+    this->fundamentalMethod="NONE";
     this->featureParam=50;
     this->filterParam=50;
     this->morphoSize=3;
@@ -46,6 +55,13 @@ ComputerVisionInterface::ComputerVisionInterface(){
     this->conObjs = false;
     this->threshold=50;
     this->contours=false;
+    this->bmview1=false;
+    this->bmview2=false;
+    this->calibrate=false;
+    this->calibrated=false;
+    this->showmview=1;
+    this->numImagesCalibration=30;
+    this->calibImageIndex=0;
 }
 
 ComputerVisionInterface::~ComputerVisionInterface(){
@@ -59,7 +75,7 @@ void ComputerVisionInterface::process(){
 /* MAIN STATE MACHINE */
 void ComputerVisionInterface::computerVisionMachine(void){
     cv::Mat frame;
-    cv::Mat proccessedImage; 
+    cv::Mat proccessedImage;
 
     if (this->workingOnCam){
         this->endVideo=false;
@@ -100,6 +116,15 @@ void ComputerVisionInterface::computerVisionMachine(void){
         }
 
         /* Start asking about proccessing options */
+        if (this->bmview1){
+            frame.copyTo(this->mview1);
+            this->bmview1=false;
+        }
+
+        if (this->bmview2){
+            frame.copyTo(this->mview2);
+            this->bmview2=false;
+        }
 
         if (this->logoActivated){
             cv::Mat logo, rlogo;
@@ -350,6 +375,167 @@ void ComputerVisionInterface::computerVisionMachine(void){
             }
         }
 
+        if (fundamentalMethod.compare("NONE",Qt::CaseSensitive)!=0){
+            RobustMatcher rmatcher;
+            rmatcher.setConfidenceLevel(0.98);
+            rmatcher.setMinDistanceToEpipolar(1.0);
+            rmatcher.setRatio(0.65f);
+            cv::Ptr<cv::FeatureDetector> pfd=new cv::SurfFeatureDetector(10);
+            rmatcher.setFeatureDetector(pfd);
+
+            if (fundamentalMethod.compare("7POINT")==0){
+                rmatcher.setMethod(CV_FM_7POINT);
+                F = rmatcher.match(this->mview1,this->mview2,this->matches, this->keypoints1, this->keypoints2);
+            }else if (fundamentalMethod.compare("8POINT")==0){
+                rmatcher.setMethod(CV_FM_8POINT);
+                F = rmatcher.match(this->mview1,this->mview2,this->matches, this->keypoints1, this->keypoints2);
+            }else if (fundamentalMethod.compare("RANSAC")==0){
+                rmatcher.setMethod(CV_FM_RANSAC);
+                F = rmatcher.match(this->mview1,this->mview2,this->matches, this->keypoints1, this->keypoints2);
+            }
+
+            FM[0][0] = F.at<double>(0,0);
+            FM[0][1] = F.at<double>(0,1);
+            FM[0][2] = F.at<double>(0,2);
+            FM[1][0] = F.at<double>(1,0);
+            FM[1][1] = F.at<double>(1,1);
+            FM[1][2] = F.at<double>(1,2);
+            FM[2][0] = F.at<double>(2,0);
+            FM[2][1] = F.at<double>(2,1);
+            FM[2][2] = F.at<double>(2,2);
+            fundamentalMethod="NONE";
+        }
+
+        if (stereo.compare("NONE",Qt::CaseSensitive)!=0){
+            //Convert Keypoints
+            std::vector<cv::Point2f> points1, points2;
+            for (std::vector<cv::DMatch>::const_iterator it= matches.begin();it!= matches.end(); ++it) {
+                // Get the position of left keypoints
+                float x= keypoints1[it->queryIdx].pt.x;
+                float y= keypoints1[it->queryIdx].pt.y;
+                points1.push_back(cv::Point2f(x,y));
+                // Get the position of right keypoints
+                x= keypoints2[it->trainIdx].pt.x;
+                y= keypoints2[it->trainIdx].pt.y;
+                points2.push_back(cv::Point2f(x,y));
+            }
+
+            if (stereo.compare("EPIPOLAR")==0){
+                std::vector<cv::Vec3f> lines;
+                std::vector<cv::Point2f> points;
+
+                if (this->showmview==1){
+                    points = points1;
+                    cv::computeCorrespondEpilines( cv::Mat(points),1,F, lines);
+                    this->mview1.copyTo(proccessedImage);
+                }else{
+                    points = points2;
+                    cv::computeCorrespondEpilines( cv::Mat(points),2,F, lines);
+                    this->mview2.copyTo(proccessedImage);
+                }
+
+                for (std::vector<cv::Vec3f>::const_iterator it= lines.begin();
+                it!=lines.end(); ++it) {
+                    // draw the line between first and last column
+                    cv::line(proccessedImage,
+                    cv::Point(0,-(*it)[2]/(*it)[1]),
+                    cv::Point(proccessedImage.cols,-((*it)[2]+
+                    (*it)[0]*proccessedImage.cols)/(*it)[1]),
+                    cv::Scalar(255,0,255));
+                }
+
+                for (unsigned int i=0; i<points.size();i++){
+                    cv::circle(proccessedImage, points[i],3, cv::Scalar(255,255,0));
+                }
+            }else if (stereo.compare("HOMOGRAPHY")==0){
+                std::vector<cv::Point2f> points1, points2;
+                for (std::vector<cv::DMatch>::const_iterator it= matches.begin();it!= matches.end(); ++it) {
+                    // Get the position of left keypoints
+                    float x= keypoints1[it->queryIdx].pt.x;
+                    float y= keypoints1[it->queryIdx].pt.y;
+                    points1.push_back(cv::Point2f(x,y));
+                    // Get the position of right keypoints
+                    x= keypoints2[it->trainIdx].pt.x;
+                    y= keypoints2[it->trainIdx].pt.y;
+                    points2.push_back(cv::Point2f(x,y));
+                }
+                std::vector<uchar> inliers(points1.size(),0);
+                H= cv::findHomography(cv::Mat(points1),cv::Mat(points2),inliers,CV_RANSAC,1.);
+
+                std::vector<cv::Point2f>::const_iterator itPts;
+                std::vector<uchar>::const_iterator itIn;
+
+                if (this->showmview==1){
+                    this->mview1.copyTo(proccessedImage);
+                    itPts = points1.begin();
+                    itIn= inliers.begin();
+                    while (itPts!=points1.end()) {
+                        // draw a circle at each inlier location
+                        if (*itIn)
+                        cv::circle(proccessedImage,*itPts,3,
+                        cv::Scalar(255,255,255),2);
+                        ++itPts;
+                        ++itIn;
+                    }
+                }else{
+                    this->mview2.copyTo(proccessedImage);
+                    itPts= points2.begin();
+                    itIn= inliers.begin();
+                    while (itPts!=points2.end()) {
+                    // draw a circle at each inlier location
+                    if (*itIn)
+                    cv::circle(proccessedImage,*itPts,3,
+                    cv::Scalar(255,255,255),2);
+                    ++itPts;
+                    ++itIn;
+                    }
+                }
+                HG[0][0] = H.at<double>(0,0);
+                HG[0][1] = H.at<double>(0,1);
+                HG[0][2] = H.at<double>(0,2);
+                HG[1][0] = H.at<double>(1,0);
+                HG[1][1] = H.at<double>(1,1);
+                HG[1][2] = H.at<double>(1,2);
+                HG[2][0] = H.at<double>(2,0);
+                HG[2][1] = H.at<double>(2,1);
+                HG[2][2] = H.at<double>(2,2);
+            }else if (stereo.compare("MOSAIC")==0){
+                // Warp image 1 to image 2
+                cv::Mat result;
+                cv::warpPerspective(this->mview1,result,H,cv::Size(2*this->mview1.cols,this->mview1.rows));
+                // Copy image 1 on the first half of full image
+                cv::Mat half(result,cv::Rect(0,0,this->mview2.cols,this->mview2.rows));
+                this->mview2.copyTo(half); // copy image2 to image1 roi
+                result.copyTo(proccessedImage);
+            }else if (stereo.compare("MATCHES")==0){
+                cv::drawMatches(this->mview1, this->keypoints1, this->mview2, this->keypoints2, this->matches,
+                                proccessedImage);
+            }
+        }
+        if (this->calibrate){
+            if (this->calibImageIndex<this->numImagesCalibration){
+                if (calibrator.addChessboardPoints(proccessedImage, cv::Size(9,6)) > 0)
+                    this->calibImageIndex++;
+            }else{
+                if (!this->calibrated){
+                    calibrator.calibrate(cv::Size(proccessedImage.rows, proccessedImage.cols));
+                    E = calibrator.getCameraMatrix();
+                    EC[0][0] = E.at<double>(0,0);
+                    EC[0][1] = E.at<double>(0,1);
+                    EC[0][2] = E.at<double>(0,2);
+                    EC[1][0] = E.at<double>(1,0);
+                    EC[1][1] = E.at<double>(1,1);
+                    EC[1][2] = E.at<double>(1,2);
+                    EC[2][0] = E.at<double>(2,0);
+                    EC[2][1] = E.at<double>(2,1);
+                    EC[2][2] = E.at<double>(2,2);
+                    this->calibrated=true;
+                }
+                proccessedImage = calibrator.remap(proccessedImage);
+                cv::putText(proccessedImage, "Undistortion Image", cv::Point(10,50), CV_FONT_HERSHEY_SIMPLEX, 0.75, cv::Scalar(255,0,0),2);
+            }
+        }
+
         if (this->updateHistogram){
             cv::Mat histogram;
             histogram = drawHistogram(proccessedImage);
@@ -400,6 +586,10 @@ QImage ComputerVisionInterface::Mat2QImage(cv::Mat &mat){
 }
 
 /** Setters **/
+void ComputerVisionInterface::setIm2Show(int i){
+    this->showmview = i;
+}
+
 void ComputerVisionInterface::setFeatureParam(double v){
     this->featureParam=v;
 }
@@ -456,6 +646,22 @@ void ComputerVisionInterface::freeVideoCapturer2(){
 }
 
 /** Available Proccesses **/
+void ComputerVisionInterface::calibrateCam(bool f){
+    this->calibrate=f;
+}
+
+void ComputerVisionInterface::selectView1(bool v){
+    this->bmview1 = v;
+}
+
+void ComputerVisionInterface::selectView2(bool v){
+    this->bmview2 = v;
+}
+
+void ComputerVisionInterface::computeFundamentalMatrix(QString m){
+    this->fundamentalMethod = m;
+}
+
 void ComputerVisionInterface::findFeature(QString type){
     this->feature=type;
 }
@@ -542,6 +748,10 @@ void ComputerVisionInterface::setLogoPosition(double x, double y){
     this->setLoopLock(true);
     this->xlogo=x;
     this->ylogo=y;
+}
+
+void ComputerVisionInterface::applyStereoFun(QString type){
+    this->stereo = type;
 }
 
 void ComputerVisionInterface::applyMorpho(QString type, double param){

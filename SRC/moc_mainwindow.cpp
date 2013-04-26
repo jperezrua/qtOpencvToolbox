@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Tue Apr 23 00:33:21 2013
+** Created: Sat Apr 27 00:17:10 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      38,   14, // methods
+      47,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,13 +62,22 @@ static const uint qt_meta_data_MainWindow[] = {
      958,   79,   11,   11, 0x08,
     1003,  123,   11,   11, 0x08,
     1038,  620,   11,   11, 0x08,
-    1070,  620,   11,   11, 0x08,
-    1107,  620,   11,   11, 0x08,
-    1146,   11,   11,   11, 0x08,
-    1171,   11,   11,   11, 0x08,
-    1196,  620,   11,   11, 0x08,
-    1234,  620,   11,   11, 0x08,
-    1272,   11,   11,   11, 0x08,
+    1070,   11,   11,   11, 0x08,
+    1095,   11,   11,   11, 0x08,
+    1120,   11,   11,   11, 0x08,
+    1154,   79,   11,   11, 0x08,
+    1202,  123,   11,   11, 0x08,
+    1238,   11,   11,   11, 0x08,
+    1264,   11,   11,   11, 0x08,
+    1297,   11,   11,   11, 0x08,
+    1332,   11,   11,   11, 0x08,
+    1366,   11,   11,   11, 0x08,
+    1400,   79,   11,   11, 0x08,
+    1438,  620,   11,   11, 0x08,
+    1471,  620,   11,   11, 0x08,
+    1504,   11,   11,   11, 0x08,
+    1530,   11,   11,   11, 0x08,
+    1556,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -104,13 +113,22 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_comboBoxFeatures_currentIndexChanged(int)\0"
     "on_featureSlider_valueChanged(int)\0"
     "on_radioButtonIm3_toggled(bool)\0"
-    "on_buttonOriginalView3_clicked(bool)\0"
-    "on_buttonProccessedView3_clicked(bool)\0"
     "on_viewButton1_clicked()\0"
     "on_viewButton2_clicked()\0"
-    "on_buttonVisualizeView1_clicked(bool)\0"
-    "on_buttonVisualizeView2_clicked(bool)\0"
     "on_buttonVisualizeView0_clicked()\0"
+    "on_fundamentalComboBox_currentIndexChanged(int)\0"
+    "on_featureSlider2_valueChanged(int)\0"
+    "on_resetButton4_clicked()\0"
+    "on_buttonOriginalView3_clicked()\0"
+    "on_buttonProccessedView3_clicked()\0"
+    "on_buttonVisualizeView1_clicked()\0"
+    "on_buttonVisualizeView2_clicked()\0"
+    "on_comboBox4_currentIndexChanged(int)\0"
+    "on_radioButtonLeft_toggled(bool)\0"
+    "on_calibrateButton_clicked(bool)\0"
+    "on_radioButtonF_clicked()\0"
+    "on_radioButtonH_clicked()\0"
+    "on_radioButtonE_clicked()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -150,13 +168,22 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 28: _t->on_comboBoxFeatures_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 29: _t->on_featureSlider_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 30: _t->on_radioButtonIm3_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 31: _t->on_buttonOriginalView3_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 32: _t->on_buttonProccessedView3_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 33: _t->on_viewButton1_clicked(); break;
-        case 34: _t->on_viewButton2_clicked(); break;
-        case 35: _t->on_buttonVisualizeView1_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 36: _t->on_buttonVisualizeView2_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 37: _t->on_buttonVisualizeView0_clicked(); break;
+        case 31: _t->on_viewButton1_clicked(); break;
+        case 32: _t->on_viewButton2_clicked(); break;
+        case 33: _t->on_buttonVisualizeView0_clicked(); break;
+        case 34: _t->on_fundamentalComboBox_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 35: _t->on_featureSlider2_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 36: _t->on_resetButton4_clicked(); break;
+        case 37: _t->on_buttonOriginalView3_clicked(); break;
+        case 38: _t->on_buttonProccessedView3_clicked(); break;
+        case 39: _t->on_buttonVisualizeView1_clicked(); break;
+        case 40: _t->on_buttonVisualizeView2_clicked(); break;
+        case 41: _t->on_comboBox4_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 42: _t->on_radioButtonLeft_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 43: _t->on_calibrateButton_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 44: _t->on_radioButtonF_clicked(); break;
+        case 45: _t->on_radioButtonH_clicked(); break;
+        case 46: _t->on_radioButtonE_clicked(); break;
         default: ;
         }
     }
@@ -194,9 +221,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 38)
+        if (_id < 47)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 38;
+        _id -= 47;
     }
     return _id;
 }

@@ -12,12 +12,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    lib/computervisioninterface.cpp
+    lib/computervisioninterface.cpp \
+    lib/robustmatcher.cpp \
+    lib/cameracalibrator.cpp
 
 INCLUDEPATH += /usr/local/include/opencv/
 
 HEADERS  += mainwindow.h \
     lib/computervisioninterface.h \
+    lib/robustmatcher.h \
+    lib/cameracalibrator.h
 
 FORMS    += mainwindow.ui
 

@@ -53,13 +53,22 @@ private slots:
     void on_comboBoxFeatures_currentIndexChanged(int index);
     void on_featureSlider_valueChanged(int value);
     void on_radioButtonIm3_toggled(bool checked);
-    void on_buttonOriginalView3_clicked(bool checked);
-    void on_buttonProccessedView3_clicked(bool checked);
     void on_viewButton1_clicked();
     void on_viewButton2_clicked();
-    void on_buttonVisualizeView1_clicked(bool checked);
-    void on_buttonVisualizeView2_clicked(bool checked);
     void on_buttonVisualizeView0_clicked();
+    void on_fundamentalComboBox_currentIndexChanged(int index);
+    void on_featureSlider2_valueChanged(int value);
+    void on_resetButton4_clicked();
+    void on_buttonOriginalView3_clicked();
+    void on_buttonProccessedView3_clicked();
+    void on_buttonVisualizeView1_clicked();
+    void on_buttonVisualizeView2_clicked();
+    void on_comboBox4_currentIndexChanged(int index);
+    void on_radioButtonLeft_toggled(bool checked);
+    void on_calibrateButton_clicked(bool checked);
+    void on_radioButtonF_clicked();
+    void on_radioButtonH_clicked();
+    void on_radioButtonE_clicked();
 
 private:
     bool viewImage1Exist;
@@ -73,6 +82,7 @@ private:
     QTimer *timerVideo; //are there still video frames?
     int currentView; /*0=original, 1=proccessed*/
     int stereoView;/*0: original, 1: view 1, 2: view 2*/
+    int matrixview; /*0=F,1=H,2=E*/
     bool camState;
     bool frameState;
     void setTab1ToDefault();
