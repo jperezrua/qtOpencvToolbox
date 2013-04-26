@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
@@ -1681,7 +1681,6 @@
       <zorder>matrix20</zorder>
       <zorder>matrix22</zorder>
       <zorder>radioButtonF</zorder>
-      <zorder>matrix02</zorder>
       <zorder>radioButtonH</zorder>
       <zorder>radioButtonE</zorder>
      </widget>
