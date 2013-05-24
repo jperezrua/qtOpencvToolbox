@@ -36,7 +36,9 @@ LIBS+=-L/usr/local/lib \
 -lopencv_features2d \
 -lopencv_flann \
 -lopencv_calib3d \
--lm
+-lm \
+-lopencv_stitching \
+-lopencv_contrib
 
  CONFIG += qtestlib
 

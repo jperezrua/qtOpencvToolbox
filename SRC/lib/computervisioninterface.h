@@ -41,6 +41,7 @@ public:
     void setRGBToLAB(bool);
     void setLogo(bool, QString, double, double);
     void setLogoPosition(double, double);
+    void setLogoTransparency(int);
     void setFrameFilename(QString);
     void setVideoFilename(QString);
     void stopThis();
@@ -65,6 +66,9 @@ public:
     void applyStereoFun(QString type);
     void calibrateCam(bool f);
     void setIm2Show(int i);
+    void addFrameToStitcher();
+    void startStitcher(bool v);
+    void clearStitcher();
 
 signals:
     void finished();
@@ -95,6 +99,7 @@ private:
     bool logoActivated;
     double xlogo;
     double ylogo;
+    int transparency;
     bool endVideo;
     QString fundamentalMethod;
     QString filter;
@@ -127,6 +132,8 @@ private:
     bool calibrated;//calibration state
     int numImagesCalibration;
     int calibImageIndex;
+    bool addImageToStitch;
+    bool stitch;
     CameraCalibrator calibrator;
     std::string logoFilename;
     std::string frameFilename;
@@ -137,6 +144,7 @@ private:
     QImage Mat2QImage(cv::Mat &);
     void computerVisionMachine(void);
     cv::Mat drawHistogram(cv::Mat src);
+    std::vector<cv::Mat> stitchImages;
 };
 
 #endif // COMPUTERVISIONINTERFACE_H

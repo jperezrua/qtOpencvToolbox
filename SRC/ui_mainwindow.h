@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Apr 27 00:17:03 2013
+** Created: Fri May 24 18:50:14 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -60,6 +60,8 @@ public:
     QLabel *label_19;
     QLabel *label_20;
     QSlider *yPositionBar;
+    QSlider *transparencyBar;
+    QLabel *label_25;
     QWidget *tab_2;
     QLabel *Image2_3;
     QLabel *Image2_2;
@@ -131,6 +133,13 @@ public:
     QGroupBox *groupBoxPV5;
     QRadioButton *radioButtonLeft;
     QRadioButton *radioButtonRight;
+    QWidget *tab;
+    QLabel *ImageSpecial;
+    QFrame *frame_2;
+    QPushButton *buttonSpecial1;
+    QPushButton *buttonSpecial11;
+    QPushButton *buttonSpecial12;
+    QLabel *numimagesLabel;
     QGroupBox *groupBox;
     QPushButton *buttonCam1;
     QLabel *cameraLabel;
@@ -141,6 +150,7 @@ public:
     QFrame *line_2;
     QPlainTextEdit *actionsText;
     QFrame *line_3;
+    QFrame *line_4;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -149,15 +159,16 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(712, 529);
-        MainWindow->setMinimumSize(QSize(712, 529));
+        MainWindow->resize(700, 529);
+        MainWindow->setMinimumSize(QSize(700, 529));
         MainWindow->setMaximumSize(QSize(712, 529));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setEnabled(false);
-        tabWidget->setGeometry(QRect(150, 6, 541, 461));
+        tabWidget->setGeometry(QRect(146, 6, 541, 461));
+        tabWidget->setTabShape(QTabWidget::Rounded);
         tab_1 = new QWidget();
         tab_1->setObjectName(QString::fromUtf8("tab_1"));
         Image1_1 = new QLabel(tab_1);
@@ -215,7 +226,7 @@ public:
         label_15->setGeometry(QRect(20, 144, 171, 16));
         groupBoxPV_1 = new QGroupBox(tab_1);
         groupBoxPV_1->setObjectName(QString::fromUtf8("groupBoxPV_1"));
-        groupBoxPV_1->setGeometry(QRect(70, 300, 121, 80));
+        groupBoxPV_1->setGeometry(QRect(70, 319, 121, 80));
         radioButtonIm = new QRadioButton(groupBoxPV_1);
         radioButtonIm->setObjectName(QString::fromUtf8("radioButtonIm"));
         radioButtonIm->setGeometry(QRect(20, 20, 71, 19));
@@ -225,48 +236,62 @@ public:
         radioButtonHis->setGeometry(QRect(20, 50, 91, 19));
         resetButton1 = new QCommandLinkButton(tab_1);
         resetButton1->setObjectName(QString::fromUtf8("resetButton1"));
-        resetButton1->setGeometry(QRect(40, 250, 121, 41));
+        resetButton1->setGeometry(QRect(40, 269, 121, 41));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/new/prefix1/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
         resetButton1->setIcon(icon);
         xPositionBar = new QSlider(tab_1);
         xPositionBar->setObjectName(QString::fromUtf8("xPositionBar"));
         xPositionBar->setEnabled(false);
-        xPositionBar->setGeometry(QRect(14, 193, 181, 19));
+        xPositionBar->setGeometry(QRect(14, 191, 181, 19));
         xPositionBar->setMaximum(100);
         xPositionBar->setValue(95);
         xPositionBar->setSliderPosition(95);
         xPositionBar->setOrientation(Qt::Horizontal);
         label_19 = new QLabel(tab_1);
         label_19->setObjectName(QString::fromUtf8("label_19"));
-        label_19->setGeometry(QRect(20, 180, 171, 16));
+        label_19->setGeometry(QRect(20, 178, 171, 16));
         label_20 = new QLabel(tab_1);
         label_20->setObjectName(QString::fromUtf8("label_20"));
-        label_20->setGeometry(QRect(20, 217, 171, 16));
+        label_20->setGeometry(QRect(20, 206, 171, 16));
         yPositionBar = new QSlider(tab_1);
         yPositionBar->setObjectName(QString::fromUtf8("yPositionBar"));
         yPositionBar->setEnabled(false);
-        yPositionBar->setGeometry(QRect(14, 230, 181, 19));
+        yPositionBar->setGeometry(QRect(14, 219, 181, 19));
         yPositionBar->setMaximum(100);
         yPositionBar->setValue(95);
         yPositionBar->setSliderPosition(95);
         yPositionBar->setOrientation(Qt::Horizontal);
+        transparencyBar = new QSlider(tab_1);
+        transparencyBar->setObjectName(QString::fromUtf8("transparencyBar"));
+        transparencyBar->setEnabled(false);
+        transparencyBar->setGeometry(QRect(14, 248, 181, 19));
+        transparencyBar->setMaximum(100);
+        transparencyBar->setValue(50);
+        transparencyBar->setSliderPosition(50);
+        transparencyBar->setOrientation(Qt::Horizontal);
+        label_25 = new QLabel(tab_1);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+        label_25->setGeometry(QRect(20, 235, 171, 16));
         tabWidget->addTab(tab_1, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         Image2_3 = new QLabel(tab_2);
         Image2_3->setObjectName(QString::fromUtf8("Image2_3"));
         Image2_3->setGeometry(QRect(370, 280, 160, 120));
+        Image2_3->setFrameShape(QFrame::WinPanel);
         Image2_3->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image2_3->setScaledContents(true);
         Image2_2 = new QLabel(tab_2);
         Image2_2->setObjectName(QString::fromUtf8("Image2_2"));
         Image2_2->setGeometry(QRect(209, 280, 160, 120));
+        Image2_2->setFrameShape(QFrame::WinPanel);
         Image2_2->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image2_2->setScaledContents(true);
         Image2_1 = new QLabel(tab_2);
         Image2_1->setObjectName(QString::fromUtf8("Image2_1"));
         Image2_1->setGeometry(QRect(209, 37, 320, 240));
+        Image2_1->setFrameShape(QFrame::WinPanel);
         Image2_1->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image2_1->setScaledContents(true);
         label_6 = new QLabel(tab_2);
@@ -310,7 +335,7 @@ public:
         label_17->setGeometry(QRect(20, 176, 171, 16));
         groupBoxPV_2 = new QGroupBox(tab_2);
         groupBoxPV_2->setObjectName(QString::fromUtf8("groupBoxPV_2"));
-        groupBoxPV_2->setGeometry(QRect(70, 300, 121, 80));
+        groupBoxPV_2->setGeometry(QRect(70, 319, 121, 80));
         radioButtonIm2 = new QRadioButton(groupBoxPV_2);
         radioButtonIm2->setObjectName(QString::fromUtf8("radioButtonIm2"));
         radioButtonIm2->setGeometry(QRect(20, 20, 71, 19));
@@ -329,7 +354,7 @@ public:
         morphSlider->setOrientation(Qt::Horizontal);
         resetButton2 = new QCommandLinkButton(tab_2);
         resetButton2->setObjectName(QString::fromUtf8("resetButton2"));
-        resetButton2->setGeometry(QRect(40, 250, 121, 41));
+        resetButton2->setGeometry(QRect(40, 269, 121, 41));
         resetButton2->setIcon(icon);
         cannySlider1 = new QSlider(tab_2);
         cannySlider1->setObjectName(QString::fromUtf8("cannySlider1"));
@@ -352,16 +377,19 @@ public:
         Image3_3 = new QLabel(tab_3);
         Image3_3->setObjectName(QString::fromUtf8("Image3_3"));
         Image3_3->setGeometry(QRect(370, 280, 160, 120));
+        Image3_3->setFrameShape(QFrame::WinPanel);
         Image3_3->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image3_3->setScaledContents(true);
         Image3_2 = new QLabel(tab_3);
         Image3_2->setObjectName(QString::fromUtf8("Image3_2"));
         Image3_2->setGeometry(QRect(209, 280, 160, 120));
+        Image3_2->setFrameShape(QFrame::WinPanel);
         Image3_2->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image3_2->setScaledContents(true);
         Image3_1 = new QLabel(tab_3);
         Image3_1->setObjectName(QString::fromUtf8("Image3_1"));
         Image3_1->setGeometry(QRect(209, 37, 320, 240));
+        Image3_1->setFrameShape(QFrame::WinPanel);
         Image3_1->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image3_1->setScaledContents(true);
         label_9 = new QLabel(tab_3);
@@ -395,11 +423,11 @@ public:
         comboBoxFeatures->setEditable(false);
         resetButton3 = new QCommandLinkButton(tab_3);
         resetButton3->setObjectName(QString::fromUtf8("resetButton3"));
-        resetButton3->setGeometry(QRect(40, 250, 121, 41));
+        resetButton3->setGeometry(QRect(40, 269, 121, 41));
         resetButton3->setIcon(icon);
         groupBoxPV_3 = new QGroupBox(tab_3);
         groupBoxPV_3->setObjectName(QString::fromUtf8("groupBoxPV_3"));
-        groupBoxPV_3->setGeometry(QRect(70, 300, 121, 80));
+        groupBoxPV_3->setGeometry(QRect(70, 319, 121, 80));
         radioButtonIm3 = new QRadioButton(groupBoxPV_3);
         radioButtonIm3->setObjectName(QString::fromUtf8("radioButtonIm3"));
         radioButtonIm3->setGeometry(QRect(20, 20, 71, 19));
@@ -422,16 +450,19 @@ public:
         Image4_3 = new QLabel(tab_4);
         Image4_3->setObjectName(QString::fromUtf8("Image4_3"));
         Image4_3->setGeometry(QRect(370, 280, 160, 120));
+        Image4_3->setFrameShape(QFrame::WinPanel);
         Image4_3->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image4_3->setScaledContents(true);
         Image4_2 = new QLabel(tab_4);
         Image4_2->setObjectName(QString::fromUtf8("Image4_2"));
         Image4_2->setGeometry(QRect(209, 280, 160, 120));
+        Image4_2->setFrameShape(QFrame::WinPanel);
         Image4_2->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image4_2->setScaledContents(true);
         Image4_1 = new QLabel(tab_4);
         Image4_1->setObjectName(QString::fromUtf8("Image4_1"));
         Image4_1->setGeometry(QRect(209, 37, 320, 240));
+        Image4_1->setFrameShape(QFrame::WinPanel);
         Image4_1->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         Image4_1->setScaledContents(true);
         viewButton1 = new QCommandLinkButton(tab_4);
@@ -545,7 +576,6 @@ public:
         matrix20->raise();
         matrix22->raise();
         radioButtonF->raise();
-        matrix02->raise();
         radioButtonH->raise();
         radioButtonE->raise();
         featureSlider2 = new QSlider(tab_4);
@@ -575,6 +605,37 @@ public:
         radioButtonRight->setObjectName(QString::fromUtf8("radioButtonRight"));
         radioButtonRight->setGeometry(QRect(90, 20, 71, 19));
         tabWidget->addTab(tab_4, QString());
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        ImageSpecial = new QLabel(tab);
+        ImageSpecial->setObjectName(QString::fromUtf8("ImageSpecial"));
+        ImageSpecial->setGeometry(QRect(209, 37, 320, 240));
+        ImageSpecial->setFrameShape(QFrame::WinPanel);
+        ImageSpecial->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
+        ImageSpecial->setScaledContents(true);
+        frame_2 = new QFrame(tab);
+        frame_2->setObjectName(QString::fromUtf8("frame_2"));
+        frame_2->setGeometry(QRect(10, 37, 191, 111));
+        frame_2->setFrameShape(QFrame::Box);
+        frame_2->setFrameShadow(QFrame::Raised);
+        buttonSpecial1 = new QPushButton(frame_2);
+        buttonSpecial1->setObjectName(QString::fromUtf8("buttonSpecial1"));
+        buttonSpecial1->setGeometry(QRect(5, 8, 181, 31));
+        buttonSpecial1->setCheckable(true);
+        buttonSpecial11 = new QPushButton(frame_2);
+        buttonSpecial11->setObjectName(QString::fromUtf8("buttonSpecial11"));
+        buttonSpecial11->setEnabled(false);
+        buttonSpecial11->setGeometry(QRect(5, 43, 91, 31));
+        buttonSpecial12 = new QPushButton(frame_2);
+        buttonSpecial12->setObjectName(QString::fromUtf8("buttonSpecial12"));
+        buttonSpecial12->setEnabled(false);
+        buttonSpecial12->setGeometry(QRect(95, 43, 91, 31));
+        numimagesLabel = new QLabel(frame_2);
+        numimagesLabel->setObjectName(QString::fromUtf8("numimagesLabel"));
+        numimagesLabel->setGeometry(QRect(27, 82, 131, 16));
+        numimagesLabel->setFrameShape(QFrame::StyledPanel);
+        numimagesLabel->setAlignment(Qt::AlignCenter);
+        tabWidget->addTab(tab, QString());
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(10, 20, 131, 451));
@@ -614,10 +675,15 @@ public:
         line_3->setGeometry(QRect(10, 0, 131, 20));
         line_3->setFrameShape(QFrame::HLine);
         line_3->setFrameShadow(QFrame::Sunken);
+        line_4 = new QFrame(centralWidget);
+        line_4->setObjectName(QString::fromUtf8("line_4"));
+        line_4->setGeometry(QRect(682, 14, 20, 451));
+        line_4->setFrameShape(QFrame::VLine);
+        line_4->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 712, 22));
+        menuBar->setGeometry(QRect(0, 0, 700, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -637,7 +703,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -680,6 +746,7 @@ public:
         resetButton1->setText(QApplication::translate("MainWindow", "RESET ACTIONS", 0, QApplication::UnicodeUTF8));
         label_19->setText(QApplication::translate("MainWindow", "Logo: X Position", 0, QApplication::UnicodeUTF8));
         label_20->setText(QApplication::translate("MainWindow", "Logo: Y Position", 0, QApplication::UnicodeUTF8));
+        label_25->setText(QApplication::translate("MainWindow", "Logo: Transparency", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_1), QApplication::translate("MainWindow", "Noise and Color", 0, QApplication::UnicodeUTF8));
         Image2_3->setText(QString());
         Image2_2->setText(QString());
@@ -784,6 +851,12 @@ public:
         radioButtonLeft->setText(QApplication::translate("MainWindow", "Left", 0, QApplication::UnicodeUTF8));
         radioButtonRight->setText(QApplication::translate("MainWindow", "Right", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Stereo", 0, QApplication::UnicodeUTF8));
+        ImageSpecial->setText(QString());
+        buttonSpecial1->setText(QApplication::translate("MainWindow", "Start Robust Mosaic", 0, QApplication::UnicodeUTF8));
+        buttonSpecial11->setText(QApplication::translate("MainWindow", "Snapshot!", 0, QApplication::UnicodeUTF8));
+        buttonSpecial12->setText(QApplication::translate("MainWindow", "Show Mosaic", 0, QApplication::UnicodeUTF8));
+        numimagesLabel->setText(QApplication::translate("MainWindow", "0 Images Selected", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "High Level", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MainWindow", "Input Config", 0, QApplication::UnicodeUTF8));
         buttonCam1->setText(QApplication::translate("MainWindow", "Start CAM", 0, QApplication::UnicodeUTF8));
         cameraLabel->setText(QApplication::translate("MainWindow", "No camera enabled", 0, QApplication::UnicodeUTF8));

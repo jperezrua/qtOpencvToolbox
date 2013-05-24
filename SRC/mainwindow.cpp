@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->currentView = 1;
     this->stereoView = 0;
     this->matrixview = 0;
+    this->counterIms = 0;
     this->camState = false;
     this->frameState = false;
 
@@ -310,6 +311,10 @@ void MainWindow::update_image_label(){
             }break;
         }
     }
+    if (ui->tabWidget->currentIndex()==4){
+        ui->ImageSpecial->setPixmap(QPixmap::fromImage(qProccessedImage));
+        ui->ImageSpecial->show();
+    }
 }
 
 void MainWindow::start_timer_image(){
@@ -361,6 +366,7 @@ void MainWindow::on_comboBox1_currentIndexChanged(int index){
         computerVision->setLogo(true,fileName,ui->xPositionBar->value(), ui->yPositionBar->value());
         ui->xPositionBar->setEnabled(true);
         ui->yPositionBar->setEnabled(true);
+        ui->transparencyBar->setEnabled(true);
     }break;
 
     default:
@@ -668,6 +674,7 @@ void MainWindow::setTab1ToDefault(){
     ui->yPositionBar->setValue(95);
     ui->xPositionBar->setEnabled(false);
     ui->yPositionBar->setEnabled(false);
+    ui->transparencyBar->setEnabled(false);
 
     computerVision->setSaltPepperNoise(false);
     computerVision->setGaussianNoise(false);
@@ -680,6 +687,7 @@ void MainWindow::setTab1ToDefault(){
     computerVision->setRGBToLAB(false);
     computerVision->setRGBToLUV(false);
     computerVision->setLogo(false,"",0,0);
+    computerVision->setLogoTransparency(50);
 }
 
 void MainWindow::setTab2ToDefault(){
@@ -742,6 +750,11 @@ void MainWindow::on_yPositionBar_valueChanged(int value){
 
 void MainWindow::on_xPositionBar_valueChanged(int value){
     computerVision->setLogoPosition(value, ui->yPositionBar->value());
+}
+
+
+void MainWindow::on_transparencyBar_valueChanged(int value){
+    computerVision->setLogoTransparency(value);
 }
 
 void MainWindow::on_resetButton1_clicked(){
@@ -871,3 +884,41 @@ void MainWindow::on_radioButtonE_clicked(){
         this->matrixview=0;
     }
 }
+
+void MainWindow::on_buttonSpecial1_clicked(){
+
+}
+
+void MainWindow::on_buttonSpecial11_clicked(){
+    computerVision->addFrameToStitcher();
+    this->counterIms++;
+    char text[200]="";
+    sprintf(text, "%d Images Selected",this->counterIms);
+    ui->numimagesLabel->setText(text);
+}
+
+void MainWindow::on_buttonSpecial12_clicked(){
+    computerVision->startStitcher(true);
+}
+
+void MainWindow::on_buttonSpecial1_clicked(bool checked){
+    if (checked){
+        // Restart everything
+        this->setAllToDefault();
+        ui->buttonSpecial1->setText("Stop and Clear");
+        ui->buttonSpecial11->setEnabled(true);
+        ui->buttonSpecial12->setEnabled(true);
+    }else{
+        ui->buttonSpecial1->setText("Robust Mosaic");
+        ui->buttonSpecial11->setEnabled(false);
+        ui->buttonSpecial12->setEnabled(false);
+        this->counterIms = 0;
+        char text[200]="";
+        sprintf(text, "%d Images Selected",this->counterIms);
+        ui->numimagesLabel->setText(text);
+        computerVision->startStitcher(false);
+        computerVision->clearStitcher();
+    }
+}
+
+

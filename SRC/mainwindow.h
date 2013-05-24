@@ -69,6 +69,11 @@ private slots:
     void on_radioButtonF_clicked();
     void on_radioButtonH_clicked();
     void on_radioButtonE_clicked();
+    void on_buttonSpecial1_clicked();
+    void on_buttonSpecial11_clicked();
+    void on_buttonSpecial12_clicked();
+    void on_buttonSpecial1_clicked(bool checked);
+    void on_transparencyBar_valueChanged(int value);
 
 private:
     bool viewImage1Exist;
@@ -90,6 +95,7 @@ private:
     void setTab3ToDefault();
     void setTab4ToDefault();
     void setAllToDefault();
+    int counterIms;
 };
 
 #endif // MAINWINDOW_H

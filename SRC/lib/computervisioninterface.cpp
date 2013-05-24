@@ -5,7 +5,8 @@
 #include "opencv2/features2d/features2d.hpp"
 #include "opencv2/nonfree/features2d.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
-
+#include "opencv2/stitching/stitcher.hpp"
+#include "opencv2/contrib/contrib.hpp"
 #include "robustmatcher.h"
 
 
@@ -34,6 +35,7 @@ ComputerVisionInterface::ComputerVisionInterface(){
     this->rgbToLuv=false;
     this->logoActivated=false;
     this->logoFilename="";
+    this->transparency=50;
     this->workingOnCam=false;
     this->workingOnFrame=false;
     this->workingOnVideo=false;
@@ -62,6 +64,8 @@ ComputerVisionInterface::ComputerVisionInterface(){
     this->showmview=1;
     this->numImagesCalibration=30;
     this->calibImageIndex=0;
+    this->addImageToStitch=false;
+    this->stitch=false;
 }
 
 ComputerVisionInterface::~ComputerVisionInterface(){
@@ -135,7 +139,8 @@ void ComputerVisionInterface::computerVisionMachine(void){
                                     rlogo.cols,
                                     rlogo.rows );
             cv::Mat subView = proccessedImage(roi);
-            rlogo.copyTo(subView);
+            cv::addWeighted(rlogo,1-(double)this->transparency/100,subView,(double)this->transparency/100,0,subView);
+            //rlogo.copyTo(subView);
         }
 
         if (this->addSaltPepperNoise){
@@ -143,7 +148,6 @@ void ComputerVisionInterface::computerVisionMachine(void){
             cv::randu(saltedMatrix, 0, 255);
             cv::Mat black = saltedMatrix < (127*double(noisePower)/100);
             cv::Mat white = saltedMatrix > (255-127*double(noisePower)/100);
-
             proccessedImage.setTo(255,white);
             proccessedImage.setTo(0,black);
         }
@@ -536,6 +540,16 @@ void ComputerVisionInterface::computerVisionMachine(void){
             }
         }
 
+        if (this->addImageToStitch){
+            this->addImageToStitch=false;
+            this->stitchImages.push_back(proccessedImage);
+        }
+
+        if (this->stitch){
+            cv::Stitcher stitcher = cv::Stitcher::createDefault();
+            stitcher.stitch(this->stitchImages, proccessedImage);
+        }
+
         if (this->updateHistogram){
             cv::Mat histogram;
             histogram = drawHistogram(proccessedImage);
@@ -750,6 +764,10 @@ void ComputerVisionInterface::setLogoPosition(double x, double y){
     this->ylogo=y;
 }
 
+void ComputerVisionInterface::setLogoTransparency(int v){
+    this->transparency = v;
+}
+
 void ComputerVisionInterface::applyStereoFun(QString type){
     this->stereo = type;
 }
@@ -781,6 +799,18 @@ void ComputerVisionInterface::applyCanny(bool canny, double c1, double c2){
 }
 
 /** Auxiliar Functions **/
+void ComputerVisionInterface::startStitcher(bool v){
+    this->stitch=v;
+}
+
+void ComputerVisionInterface::clearStitcher(){
+    this->stitchImages.clear();
+}
+
+void ComputerVisionInterface::addFrameToStitcher(){
+    this->addImageToStitch=true;
+}
+
 void ComputerVisionInterface::setWorkingOnCam(bool act){
     this->workingOnCam=act;
 }
