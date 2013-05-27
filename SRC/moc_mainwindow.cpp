@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Fri May 24 18:50:26 2013
+** Created: Mon May 27 00:13:16 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      52,   14, // methods
+      56,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,10 +79,14 @@ static const uint qt_meta_data_MainWindow[] = {
     1530,   11,   11,   11, 0x08,
     1556,   11,   11,   11, 0x08,
     1582,   11,   11,   11, 0x08,
-    1610,   11,   11,   11, 0x08,
-    1639,   11,   11,   11, 0x08,
-    1668,  620,   11,   11, 0x08,
-    1700,  123,   11,   11, 0x08,
+    1611,   11,   11,   11, 0x08,
+    1640,  620,   11,   11, 0x08,
+    1672,  123,   11,   11, 0x08,
+    1709,  620,   11,   11, 0x08,
+    1741,   11,   11,   11, 0x08,
+    1770,   11,   11,   11, 0x08,
+    1799,   11,   11,   11, 0x08,
+    1828,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -134,11 +138,15 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_radioButtonF_clicked()\0"
     "on_radioButtonH_clicked()\0"
     "on_radioButtonE_clicked()\0"
-    "on_buttonSpecial1_clicked()\0"
     "on_buttonSpecial11_clicked()\0"
     "on_buttonSpecial12_clicked()\0"
     "on_buttonSpecial1_clicked(bool)\0"
     "on_transparencyBar_valueChanged(int)\0"
+    "on_buttonSpecial2_clicked(bool)\0"
+    "on_buttonSpecial21_clicked()\0"
+    "on_buttonSpecial22_clicked()\0"
+    "on_buttonSpecial13_clicked()\0"
+    "on_buttonSpecial23_clicked()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -194,11 +202,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 44: _t->on_radioButtonF_clicked(); break;
         case 45: _t->on_radioButtonH_clicked(); break;
         case 46: _t->on_radioButtonE_clicked(); break;
-        case 47: _t->on_buttonSpecial1_clicked(); break;
-        case 48: _t->on_buttonSpecial11_clicked(); break;
-        case 49: _t->on_buttonSpecial12_clicked(); break;
-        case 50: _t->on_buttonSpecial1_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 51: _t->on_transparencyBar_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 47: _t->on_buttonSpecial11_clicked(); break;
+        case 48: _t->on_buttonSpecial12_clicked(); break;
+        case 49: _t->on_buttonSpecial1_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 50: _t->on_transparencyBar_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 51: _t->on_buttonSpecial2_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 52: _t->on_buttonSpecial21_clicked(); break;
+        case 53: _t->on_buttonSpecial22_clicked(); break;
+        case 54: _t->on_buttonSpecial13_clicked(); break;
+        case 55: _t->on_buttonSpecial23_clicked(); break;
         default: ;
         }
     }
@@ -236,9 +248,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 52)
+        if (_id < 56)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 52;
+        _id -= 56;
     }
     return _id;
 }

@@ -1,3 +1,11 @@
+/*
+    @file: mainwindow.cpp
+    @license: GNU General Public License
+    @author: Juan Manuel Perez Rua
+    @note: Code written for th practical module of
+    Visual Perception at the Université de Bourgogne
+*/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
@@ -44,6 +52,9 @@ void MainWindow::start_computervision_thread(){
     connect(this->visionThread, SIGNAL(finished()),
             this->visionThread, SLOT(deleteLater()));
     this->visionThread->start();
+
+    connect(this->computerVision, SIGNAL(sfmReady()),
+            ui->panelGL, SLOT(plotCloud()));
 }
 
 /* Working on CAM */
@@ -885,10 +896,6 @@ void MainWindow::on_radioButtonE_clicked(){
     }
 }
 
-void MainWindow::on_buttonSpecial1_clicked(){
-
-}
-
 void MainWindow::on_buttonSpecial11_clicked(){
     computerVision->addFrameToStitcher();
     this->counterIms++;
@@ -901,17 +908,33 @@ void MainWindow::on_buttonSpecial12_clicked(){
     computerVision->startStitcher(true);
 }
 
+void MainWindow::on_buttonSpecial13_clicked(){
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Open image"), "/home", tr("Multimedia (*.jpg *.png *.bmp *.tif)"));
+    this->counterIms++;
+    char text[200]="";
+    sprintf(text, "%d Images Selected",this->counterIms);
+    ui->numimagesLabel->setText(text);
+    computerVision->addFrameToStitcherFromFile(fileName);
+}
+
 void MainWindow::on_buttonSpecial1_clicked(bool checked){
     if (checked){
+        ui->buttonSpecial2->setEnabled(false);
+        ui->buttonSpecial21->setEnabled(false);
+        ui->buttonSpecial22->setEnabled(false);
+        ui->buttonSpecial23->setEnabled(false);
         // Restart everything
         this->setAllToDefault();
         ui->buttonSpecial1->setText("Stop and Clear");
         ui->buttonSpecial11->setEnabled(true);
         ui->buttonSpecial12->setEnabled(true);
+        ui->buttonSpecial13->setEnabled(true);
     }else{
+        ui->buttonSpecial2->setEnabled(true);
         ui->buttonSpecial1->setText("Robust Mosaic");
         ui->buttonSpecial11->setEnabled(false);
         ui->buttonSpecial12->setEnabled(false);
+        ui->buttonSpecial13->setEnabled(false);
         this->counterIms = 0;
         char text[200]="";
         sprintf(text, "%d Images Selected",this->counterIms);
@@ -921,4 +944,50 @@ void MainWindow::on_buttonSpecial1_clicked(bool checked){
     }
 }
 
+void MainWindow::on_buttonSpecial2_clicked(bool checked){
+    if (checked){
+        ui->buttonSpecial1->setEnabled(false);
+        ui->buttonSpecial11->setEnabled(false);
+        ui->buttonSpecial12->setEnabled(false);
+        ui->buttonSpecial13->setEnabled(false);
+        // Restart everything
+        this->setAllToDefault();
+        ui->buttonSpecial2->setText("Stop and Clear");
+        ui->buttonSpecial21->setEnabled(true);
+        ui->buttonSpecial22->setEnabled(true);
+        ui->buttonSpecial23->setEnabled(true);
+    }else{
+        ui->buttonSpecial1->setEnabled(true);
+        ui->buttonSpecial2->setText("Robust SFM");
+        ui->buttonSpecial21->setEnabled(false);
+        ui->buttonSpecial22->setEnabled(false);
+        ui->buttonSpecial23->setEnabled(false);
+        this->counterIms = 0;
+        char text[200]="";
+        sprintf(text, "%d Images Selected",this->counterIms);
+        ui->numimagesLabel2->setText(text);
+        computerVision->startSFM(false);
+        computerVision->clearSFM();
+    }
+}
 
+void MainWindow::on_buttonSpecial21_clicked(){
+    this->counterIms++;
+    char text[200]="";
+    sprintf(text, "%d Images Selected",this->counterIms);
+    ui->numimagesLabel2->setText(text);
+    computerVision->addFrameToSFM();
+}
+
+void MainWindow::on_buttonSpecial22_clicked(){
+    computerVision->startSFM(true);
+}
+
+void MainWindow::on_buttonSpecial23_clicked(){
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Open image"), "/home", tr("Multimedia (*.jpg *.png *.bmp *.tif)"));
+    this->counterIms++;
+    char text[200]="";
+    sprintf(text, "%d Images Selected",this->counterIms);
+    ui->numimagesLabel2->setText(text);
+    computerVision->addFrameToSFMFromFile(fileName);
+}

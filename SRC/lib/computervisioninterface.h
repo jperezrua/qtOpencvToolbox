@@ -1,3 +1,12 @@
+/*
+    @file: computervisioninterface.h
+    @license: GNU General Public License
+    @author: Juan Manuel Perez Rua
+    @note: Code written for th practical module of
+    Visual Perception at the Université de Bourgogne
+*/
+
+
 #ifndef COMPUTERVISIONINTERFACE_H
 #define COMPUTERVISIONINTERFACE_H
 
@@ -67,12 +76,18 @@ public:
     void calibrateCam(bool f);
     void setIm2Show(int i);
     void addFrameToStitcher();
+    void addFrameToStitcherFromFile(QString);
     void startStitcher(bool v);
     void clearStitcher();
+    void addFrameToSFM();
+    void addFrameToSFMFromFile(QString);
+    void startSFM(bool);
+    void clearSFM();
 
 signals:
     void finished();
     void error(QString err);
+    void sfmReady();
 
 public slots:
     void process();
@@ -133,7 +148,13 @@ private:
     int numImagesCalibration;
     int calibImageIndex;
     bool addImageToStitch;
+    bool addImageToSFM;
+    bool addImageToStitchFF;
+    bool addImageToSFMFF;
+    QString sfmName;
+    QString stitchName;
     bool stitch;
+    bool doSfm;
     CameraCalibrator calibrator;
     std::string logoFilename;
     std::string frameFilename;
@@ -145,6 +166,8 @@ private:
     void computerVisionMachine(void);
     cv::Mat drawHistogram(cv::Mat src);
     std::vector<cv::Mat> stitchImages;
+    std::vector<cv::Mat> sfmImages;
+    std::vector<std::string> imageIds;
 };
 
 #endif // COMPUTERVISIONINTERFACE_H

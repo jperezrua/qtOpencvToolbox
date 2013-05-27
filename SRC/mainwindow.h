@@ -1,3 +1,11 @@
+/*
+    @file: mainwindow.cpp
+    @license: GNU General Public License
+    @author: Juan Manuel Perez Rua
+    @note: Code written for th practical module of
+    Visual Perception at the Université de Bourgogne
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -69,11 +77,15 @@ private slots:
     void on_radioButtonF_clicked();
     void on_radioButtonH_clicked();
     void on_radioButtonE_clicked();
-    void on_buttonSpecial1_clicked();
     void on_buttonSpecial11_clicked();
     void on_buttonSpecial12_clicked();
     void on_buttonSpecial1_clicked(bool checked);
     void on_transparencyBar_valueChanged(int value);
+    void on_buttonSpecial2_clicked(bool checked);
+    void on_buttonSpecial21_clicked();
+    void on_buttonSpecial22_clicked();
+    void on_buttonSpecial13_clicked();
+    void on_buttonSpecial23_clicked();
 
 private:
     bool viewImage1Exist;

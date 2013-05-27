@@ -1,3 +1,11 @@
+/*
+    @file: cameracalibrator.h
+    @license: GNU General Public License
+    @author: Juan Manuel Perez Rua
+    @note: Code written for th practical module of
+    Visual Perception at the Université de Bourgogne
+*/
+
 #ifndef CAMERACALIBRATOR_H
 #define CAMERACALIBRATOR_H
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri May 24 18:50:14 2013
+** Created: Sun May 26 23:12:53 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -31,6 +31,7 @@
 #include <QtGui/QTabWidget>
 #include <QtGui/QToolBar>
 #include <QtGui/QWidget>
+#include "mypanelopengl.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -140,6 +141,14 @@ public:
     QPushButton *buttonSpecial11;
     QPushButton *buttonSpecial12;
     QLabel *numimagesLabel;
+    QPushButton *buttonSpecial13;
+    MyPanelOpenGL *panelGL;
+    QFrame *frame_3;
+    QPushButton *buttonSpecial2;
+    QPushButton *buttonSpecial21;
+    QPushButton *buttonSpecial22;
+    QLabel *numimagesLabel2;
+    QPushButton *buttonSpecial23;
     QGroupBox *groupBox;
     QPushButton *buttonCam1;
     QLabel *cameraLabel;
@@ -609,7 +618,7 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         ImageSpecial = new QLabel(tab);
         ImageSpecial->setObjectName(QString::fromUtf8("ImageSpecial"));
-        ImageSpecial->setGeometry(QRect(209, 37, 320, 240));
+        ImageSpecial->setGeometry(QRect(209, 9, 320, 200));
         ImageSpecial->setFrameShape(QFrame::WinPanel);
         ImageSpecial->setPixmap(QPixmap(QString::fromUtf8("../../../Pictures/hendrix.jpg")));
         ImageSpecial->setScaledContents(true);
@@ -625,16 +634,49 @@ public:
         buttonSpecial11 = new QPushButton(frame_2);
         buttonSpecial11->setObjectName(QString::fromUtf8("buttonSpecial11"));
         buttonSpecial11->setEnabled(false);
-        buttonSpecial11->setGeometry(QRect(5, 43, 91, 31));
+        buttonSpecial11->setGeometry(QRect(5, 43, 90, 18));
         buttonSpecial12 = new QPushButton(frame_2);
         buttonSpecial12->setObjectName(QString::fromUtf8("buttonSpecial12"));
         buttonSpecial12->setEnabled(false);
-        buttonSpecial12->setGeometry(QRect(95, 43, 91, 31));
+        buttonSpecial12->setGeometry(QRect(95, 43, 90, 38));
         numimagesLabel = new QLabel(frame_2);
         numimagesLabel->setObjectName(QString::fromUtf8("numimagesLabel"));
-        numimagesLabel->setGeometry(QRect(27, 82, 131, 16));
+        numimagesLabel->setGeometry(QRect(27, 86, 131, 16));
         numimagesLabel->setFrameShape(QFrame::StyledPanel);
         numimagesLabel->setAlignment(Qt::AlignCenter);
+        buttonSpecial13 = new QPushButton(frame_2);
+        buttonSpecial13->setObjectName(QString::fromUtf8("buttonSpecial13"));
+        buttonSpecial13->setEnabled(false);
+        buttonSpecial13->setGeometry(QRect(5, 61, 90, 18));
+        panelGL = new MyPanelOpenGL(tab);
+        panelGL->setObjectName(QString::fromUtf8("panelGL"));
+        panelGL->setGeometry(QRect(208, 220, 321, 200));
+        frame_3 = new QFrame(tab);
+        frame_3->setObjectName(QString::fromUtf8("frame_3"));
+        frame_3->setGeometry(QRect(10, 260, 191, 111));
+        frame_3->setFrameShape(QFrame::Box);
+        frame_3->setFrameShadow(QFrame::Raised);
+        buttonSpecial2 = new QPushButton(frame_3);
+        buttonSpecial2->setObjectName(QString::fromUtf8("buttonSpecial2"));
+        buttonSpecial2->setGeometry(QRect(5, 8, 181, 31));
+        buttonSpecial2->setCheckable(true);
+        buttonSpecial21 = new QPushButton(frame_3);
+        buttonSpecial21->setObjectName(QString::fromUtf8("buttonSpecial21"));
+        buttonSpecial21->setEnabled(false);
+        buttonSpecial21->setGeometry(QRect(5, 43, 90, 18));
+        buttonSpecial22 = new QPushButton(frame_3);
+        buttonSpecial22->setObjectName(QString::fromUtf8("buttonSpecial22"));
+        buttonSpecial22->setEnabled(false);
+        buttonSpecial22->setGeometry(QRect(95, 43, 90, 38));
+        numimagesLabel2 = new QLabel(frame_3);
+        numimagesLabel2->setObjectName(QString::fromUtf8("numimagesLabel2"));
+        numimagesLabel2->setGeometry(QRect(27, 86, 131, 16));
+        numimagesLabel2->setFrameShape(QFrame::StyledPanel);
+        numimagesLabel2->setAlignment(Qt::AlignCenter);
+        buttonSpecial23 = new QPushButton(frame_3);
+        buttonSpecial23->setObjectName(QString::fromUtf8("buttonSpecial23"));
+        buttonSpecial23->setEnabled(false);
+        buttonSpecial23->setGeometry(QRect(5, 62, 90, 18));
         tabWidget->addTab(tab, QString());
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
@@ -856,6 +898,12 @@ public:
         buttonSpecial11->setText(QApplication::translate("MainWindow", "Snapshot!", 0, QApplication::UnicodeUTF8));
         buttonSpecial12->setText(QApplication::translate("MainWindow", "Show Mosaic", 0, QApplication::UnicodeUTF8));
         numimagesLabel->setText(QApplication::translate("MainWindow", "0 Images Selected", 0, QApplication::UnicodeUTF8));
+        buttonSpecial13->setText(QApplication::translate("MainWindow", "Open image!", 0, QApplication::UnicodeUTF8));
+        buttonSpecial2->setText(QApplication::translate("MainWindow", "Start SFM", 0, QApplication::UnicodeUTF8));
+        buttonSpecial21->setText(QApplication::translate("MainWindow", "Snapshot!", 0, QApplication::UnicodeUTF8));
+        buttonSpecial22->setText(QApplication::translate("MainWindow", "See Structure", 0, QApplication::UnicodeUTF8));
+        numimagesLabel2->setText(QApplication::translate("MainWindow", "0 Images Selected", 0, QApplication::UnicodeUTF8));
+        buttonSpecial23->setText(QApplication::translate("MainWindow", "Open image!", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "High Level", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MainWindow", "Input Config", 0, QApplication::UnicodeUTF8));
         buttonCam1->setText(QApplication::translate("MainWindow", "Start CAM", 0, QApplication::UnicodeUTF8));

@@ -1,3 +1,11 @@
+/*
+    @file: computervisioninterface.cpp
+    @license: GNU General Public License
+    @author: Juan Manuel Perez Rua
+    @note: Code written for th practical module of
+    Visual Perception at the Université de Bourgogne
+*/
+
 #include "computervisioninterface.h"
 #include <vector>
 #include <QtTest>
@@ -8,7 +16,8 @@
 #include "opencv2/stitching/stitcher.hpp"
 #include "opencv2/contrib/contrib.hpp"
 #include "robustmatcher.h"
-
+#include "Distance.h"
+#include "MultiCameraPnP.h"
 
 /* Interface Global Variables */
 
@@ -18,6 +27,8 @@ QImage qProccessedImage;
 double FM[3][3]={{0,0,0},{0,0,0},{0,0,1}};
 double HG[3][3]={{0,0,0},{0,0,0},{0,0,1}};
 double EC[3][3]={{0,0,0},{0,0,0},{0,0,1}};
+std::vector<cv::Point3d> structure;
+std::vector<cv::Vec3b> colors;
 
 ComputerVisionInterface::ComputerVisionInterface(){
     this->addSaltPepperNoise=false;
@@ -66,6 +77,10 @@ ComputerVisionInterface::ComputerVisionInterface(){
     this->calibImageIndex=0;
     this->addImageToStitch=false;
     this->stitch=false;
+    this->doSfm=false;
+    this->addImageToSFM=false;
+    this->addImageToSFMFF=false;
+    this->addImageToStitchFF=false;
 }
 
 ComputerVisionInterface::~ComputerVisionInterface(){
@@ -542,12 +557,58 @@ void ComputerVisionInterface::computerVisionMachine(void){
 
         if (this->addImageToStitch){
             this->addImageToStitch=false;
+            this->addImageToStitchFF=false;
             this->stitchImages.push_back(proccessedImage);
+        }
+
+        if (this->addImageToStitchFF){
+            this->addImageToStitchFF=false;
+            this->addImageToStitch=false;
+            cv::Mat temp = cv::imread(this->stitchName.toStdString(), CV_LOAD_IMAGE_COLOR);
+            this->stitchImages.push_back(temp);
         }
 
         if (this->stitch){
             cv::Stitcher stitcher = cv::Stitcher::createDefault();
             stitcher.stitch(this->stitchImages, proccessedImage);
+        }
+
+        if (this->addImageToSFM){
+            this->addImageToSFM=false;
+            this->addImageToSFMFF=false;
+            this->sfmImages.push_back(proccessedImage);
+            char name[200];
+            sprintf(name,"image_%d",(int)this->imageIds.size()+1);
+            this->imageIds.push_back(name);
+        }
+
+        if (this->addImageToSFMFF){
+            this->addImageToSFMFF=false;
+            this->addImageToSFM=false;
+            cv::Mat temp = cv::imread(this->sfmName.toStdString(), CV_LOAD_IMAGE_COLOR);
+            this->sfmImages.push_back(temp);
+            char name[200];
+            sprintf(name,"image_%d",(int)this->imageIds.size()+1);
+            this->imageIds.push_back(name);
+        }
+
+        if (this->doSfm){
+            cv::Ptr<MultiCameraPnP> sfm = new MultiCameraPnP(sfmImages,imageIds,"");
+            sfm->use_gpu=false;
+            sfm->use_rich_features = true;
+            sfm->RecoverDepthFromImages();
+            structure = sfm->getPointCloud();
+            colors = sfm->getPointCloudRGB();
+            if (structure.size()==0){
+                structure=sfm->getPointCloudBeforeBA();
+                colors=sfm->getPointCloudRGBBeforeBA();
+            }
+
+            for (unsigned int i=0; i<structure.size(); i++){
+                std::cout<<"("<<structure.at(i).x<<","<<structure.at(i).y<<","<<structure.at(i).z<<")"<<std::endl;
+            }
+            this->doSfm = false;
+            emit(sfmReady());
         }
 
         if (this->updateHistogram){
@@ -799,12 +860,35 @@ void ComputerVisionInterface::applyCanny(bool canny, double c1, double c2){
 }
 
 /** Auxiliar Functions **/
+void ComputerVisionInterface::startSFM(bool v){
+    this->doSfm=v;
+}
+
+void ComputerVisionInterface::clearSFM(){
+    this->sfmImages.clear();
+    this->imageIds.clear();
+}
+
+void ComputerVisionInterface::addFrameToSFMFromFile(QString name){
+    this->addImageToSFMFF=true;
+    this->sfmName=name;
+}
+
+void ComputerVisionInterface::addFrameToSFM(){
+    this->addImageToSFM=true;
+}
+
 void ComputerVisionInterface::startStitcher(bool v){
     this->stitch=v;
 }
 
 void ComputerVisionInterface::clearStitcher(){
     this->stitchImages.clear();
+}
+
+void ComputerVisionInterface::addFrameToStitcherFromFile(QString name){
+    this->addImageToStitchFF=true;
+    this->stitchName=name;
 }
 
 void ComputerVisionInterface::addFrameToStitcher(){
