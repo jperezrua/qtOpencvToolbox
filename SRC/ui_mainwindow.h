@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun May 26 23:12:53 2013
+** Created: Mon May 27 16:13:34 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -22,7 +22,6 @@
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
-#include <QtGui/QMenuBar>
 #include <QtGui/QPlainTextEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QRadioButton>
@@ -160,7 +159,6 @@ public:
     QPlainTextEdit *actionsText;
     QFrame *line_3;
     QFrame *line_4;
-    QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -171,6 +169,9 @@ public:
         MainWindow->resize(700, 529);
         MainWindow->setMinimumSize(QSize(700, 529));
         MainWindow->setMaximumSize(QSize(712, 529));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/new/prefix1/UB.png"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -246,9 +247,9 @@ public:
         resetButton1 = new QCommandLinkButton(tab_1);
         resetButton1->setObjectName(QString::fromUtf8("resetButton1"));
         resetButton1->setGeometry(QRect(40, 269, 121, 41));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/new/prefix1/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
-        resetButton1->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/new/prefix1/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
+        resetButton1->setIcon(icon1);
         xPositionBar = new QSlider(tab_1);
         xPositionBar->setObjectName(QString::fromUtf8("xPositionBar"));
         xPositionBar->setEnabled(false);
@@ -364,7 +365,7 @@ public:
         resetButton2 = new QCommandLinkButton(tab_2);
         resetButton2->setObjectName(QString::fromUtf8("resetButton2"));
         resetButton2->setGeometry(QRect(40, 269, 121, 41));
-        resetButton2->setIcon(icon);
+        resetButton2->setIcon(icon1);
         cannySlider1 = new QSlider(tab_2);
         cannySlider1->setObjectName(QString::fromUtf8("cannySlider1"));
         cannySlider1->setEnabled(false);
@@ -433,7 +434,7 @@ public:
         resetButton3 = new QCommandLinkButton(tab_3);
         resetButton3->setObjectName(QString::fromUtf8("resetButton3"));
         resetButton3->setGeometry(QRect(40, 269, 121, 41));
-        resetButton3->setIcon(icon);
+        resetButton3->setIcon(icon1);
         groupBoxPV_3 = new QGroupBox(tab_3);
         groupBoxPV_3->setObjectName(QString::fromUtf8("groupBoxPV_3"));
         groupBoxPV_3->setGeometry(QRect(70, 319, 121, 80));
@@ -477,13 +478,13 @@ public:
         viewButton1 = new QCommandLinkButton(tab_4);
         viewButton1->setObjectName(QString::fromUtf8("viewButton1"));
         viewButton1->setGeometry(QRect(11, 0, 90, 40));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/photo.png"), QSize(), QIcon::Normal, QIcon::Off);
-        viewButton1->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/new/prefix1/photo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        viewButton1->setIcon(icon2);
         viewButton2 = new QCommandLinkButton(tab_4);
         viewButton2->setObjectName(QString::fromUtf8("viewButton2"));
         viewButton2->setGeometry(QRect(111, 0, 90, 40));
-        viewButton2->setIcon(icon1);
+        viewButton2->setIcon(icon2);
         calibrateButton = new QPushButton(tab_4);
         calibrateButton->setObjectName(QString::fromUtf8("calibrateButton"));
         calibrateButton->setGeometry(QRect(10, 166, 191, 27));
@@ -602,7 +603,7 @@ public:
         QFont font1;
         font1.setKerning(true);
         resetButton4->setFont(font1);
-        resetButton4->setIcon(icon);
+        resetButton4->setIcon(icon1);
         groupBoxPV5 = new QGroupBox(tab_4);
         groupBoxPV5->setObjectName(QString::fromUtf8("groupBoxPV5"));
         groupBoxPV5->setGeometry(QRect(20, 124, 171, 41));
@@ -719,14 +720,10 @@ public:
         line_3->setFrameShadow(QFrame::Sunken);
         line_4 = new QFrame(centralWidget);
         line_4->setObjectName(QString::fromUtf8("line_4"));
-        line_4->setGeometry(QRect(682, 14, 20, 451));
+        line_4->setGeometry(QRect(682, 4, 20, 461));
         line_4->setFrameShape(QFrame::VLine);
         line_4->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 700, 22));
-        MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -745,7 +742,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(4);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -753,7 +750,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Visual Perception Toolbox", 0, QApplication::UnicodeUTF8));
         Image1_1->setText(QString());
         Image1_2->setText(QString());
         Image1_3->setText(QString());
@@ -892,7 +889,7 @@ public:
         groupBoxPV5->setTitle(QApplication::translate("MainWindow", "Proccessed View", 0, QApplication::UnicodeUTF8));
         radioButtonLeft->setText(QApplication::translate("MainWindow", "Left", 0, QApplication::UnicodeUTF8));
         radioButtonRight->setText(QApplication::translate("MainWindow", "Right", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Stereo", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Calibration and Stereo", 0, QApplication::UnicodeUTF8));
         ImageSpecial->setText(QString());
         buttonSpecial1->setText(QApplication::translate("MainWindow", "Start Robust Mosaic", 0, QApplication::UnicodeUTF8));
         buttonSpecial11->setText(QApplication::translate("MainWindow", "Snapshot!", 0, QApplication::UnicodeUTF8));

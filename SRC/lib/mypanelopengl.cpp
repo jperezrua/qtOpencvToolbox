@@ -72,7 +72,7 @@ void MyPanelOpenGL::paintGL(){
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-    glPointSize(1.33);
+    glPointSize(1.3);
     glBegin(GL_POINTS);
     for (uint i=0;i<structure.size();i++){
         glColor3b(colors.at(i)[0],colors.at(i)[1],colors.at(i)[2]);

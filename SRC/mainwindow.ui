@@ -23,7 +23,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Visual Perception Toolbox</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resources/list.qrc">
+    <normaloff>:/new/prefix1/UB.png</normaloff>:/new/prefix1/UB.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -42,7 +46,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
@@ -1256,7 +1260,7 @@
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>Stereo</string>
+      <string>Calibration and Stereo</string>
      </attribute>
      <widget class="QLabel" name="Image4_3">
       <property name="geometry">
@@ -2225,25 +2229,15 @@
     <property name="geometry">
      <rect>
       <x>682</x>
-      <y>14</y>
+      <y>4</y>
       <width>20</width>
-      <height>451</height>
+      <height>461</height>
      </rect>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>700</width>
-     <height>22</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="sizePolicy">

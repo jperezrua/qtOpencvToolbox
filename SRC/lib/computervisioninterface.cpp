@@ -921,7 +921,7 @@ cv::Mat ComputerVisionInterface::drawHistogram(cv::Mat src){
 
 
     /// Set the ranges ( for B,G,R) )
-    float range[] = { 0, 256 } ;
+    float range[] = { -5, 260 } ;
     const float* histRange = { range };
 
     cv::Mat b_hist, g_hist, r_hist;
@@ -935,7 +935,7 @@ cv::Mat ComputerVisionInterface::drawHistogram(cv::Mat src){
     int hist_w = 512; int hist_h = 400;
     int bin_w = cvRound( (double) hist_w/histSize );
 
-    cv::Mat histImage( hist_h, hist_w, CV_8UC3, cv::Scalar( 0,0,0) );
+    cv::Mat histImage( hist_h, hist_w, CV_8UC3, cv::Scalar( 128,128,128 ) );
 
     /// Normalize the result to [ 0, histImage.rows ]
     cv::normalize(b_hist, b_hist, 0, histImage.rows, cv::NORM_MINMAX, -1, cv::Mat() );
@@ -946,13 +946,13 @@ cv::Mat ComputerVisionInterface::drawHistogram(cv::Mat src){
     for( int i = 1; i < histSize; i++ ){
        line( histImage, cv::Point( bin_w*(i-1), hist_h - cvRound(b_hist.at<float>(i-1)) ) ,
                         cv::Point( bin_w*(i), hist_h - cvRound(b_hist.at<float>(i)) ),
-                        cv::Scalar( 255, 0, 0), 2, 8, 0  );
+                        cv::Scalar( 255, 0, 0), 4, 8, 0  );
        line( histImage, cv::Point( bin_w*(i-1), hist_h - cvRound(g_hist.at<float>(i-1)) ) ,
                         cv::Point( bin_w*(i), hist_h - cvRound(g_hist.at<float>(i)) ),
-                        cv::Scalar( 0, 255, 0), 2, 8, 0  );
+                        cv::Scalar( 0, 255, 0), 4, 8, 0  );
        line( histImage, cv::Point( bin_w*(i-1), hist_h - cvRound(r_hist.at<float>(i-1)) ) ,
                         cv::Point( bin_w*(i), hist_h - cvRound(r_hist.at<float>(i)) ),
-                        cv::Scalar( 0, 0, 255), 2, 8, 0  );
+                        cv::Scalar( 0, 0, 255), 4, 8, 0  );
     }
     return histImage;
 }
